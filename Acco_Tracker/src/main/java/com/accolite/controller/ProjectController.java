@@ -1,6 +1,7 @@
 package com.accolite.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,11 @@ public class ProjectController {
 		return projectservices.getProjectByProjectId(projectId);
 	}
 	
+	@GetMapping("/getAllProject")
+	public List<Project> getAllProject()
+	{
+		return projectservices.getAllProject();
+	}
 	@GetMapping("/getProjectByProjectName")
 	public Project getProjectByProjectName(@RequestParam String projectName)
 	{

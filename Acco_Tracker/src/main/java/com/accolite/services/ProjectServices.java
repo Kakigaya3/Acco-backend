@@ -1,5 +1,6 @@
 package com.accolite.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,9 @@ public class ProjectServices {
 
 	public Project getProjectByProjectName(String projectName) {
 		return projectRepo.getProjectByProjectName(projectName).get();
+	}
+
+	public List<Project> getAllProject() {
+		return projectRepo.findAll();
 	} 
 }
