@@ -18,7 +18,7 @@ import lombok.Data;
 public class Client {
     
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long clientId;
 	private String clientName;
 	private String domainName;

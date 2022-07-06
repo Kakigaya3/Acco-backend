@@ -1,20 +1,18 @@
 package com.accolite.services;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.accolite.model.Allocation;
+
 import com.accolite.model.DtoClass;
 import com.accolite.model.Response;
 import com.accolite.repository.AllocationRepository;
-
-
 
 @Service
 public class AllocationServices {
@@ -24,7 +22,8 @@ public class AllocationServices {
 
 	public void addAllocation(Allocation allocation) {
 		String id=allocation.getEmployeeId();
-		Allocation alloc=allocationRepo.getAllocationByEmpId(id);
+		Allocation alloc=allocationRepo.getAllocationByEmpId(id)
+;
 		if(alloc!=null) {
 			alloc.setIsActive(0);
 			alloc.setEndDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
@@ -32,6 +31,10 @@ public class AllocationServices {
 		}
         allocationRepo.save(allocation);		
 	}
+	
+//	public void addAllocation(AllocationDto allocationdto)
+//        allocationRepo.save(allocationdto);
+//	}
 
 	public List<Map<String, Object>> getAllAllocation() {
         return allocationRepo.getAllAllocation();		
@@ -44,9 +47,11 @@ public class AllocationServices {
 	public List<Map<String, Object>> getAllocationByEmpEmail(String email) {
 		return allocationRepo.getAllocationByEmpEmail(email);
 	}
+
 	public List<Map<String, Object>> getAllocationByEmpId(String id) {
 		return allocationRepo.getAllocationEmpId(id);
 	}
+
 
 	public List<Map<String, Object>> getAllocationHistory(String empId) {
 		return allocationRepo.getAllocationHistory(empId);
@@ -59,4 +64,5 @@ public class AllocationServices {
 		}
 		return new Response("Yes");
 	}
+
 }

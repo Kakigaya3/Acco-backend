@@ -1,6 +1,7 @@
 package com.accolite.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.model.Allocation;
+
 import com.accolite.model.DtoClass;
 import com.accolite.model.Response;
 import com.accolite.services.AllocationServices;
@@ -37,11 +39,23 @@ public class AllocationController {
 		allocationservices.addAllocation(allocation);
 		return new Response("Allocation done for Employee "+ allocation.getEmployeeId());
 	}
-//	
+	
+//	@PostMapping("/saveAllocation")
+//	public Response saveAllocation(@RequestBody Allocation allocation)
+//	{
+//		allocationservices.saveAllocation(allocation);
+//		return new Response("Allocation done");
+//	}
+//	@PostMapping("/addAllocation")
+//     public String addAllocation(AllocationDto allocationdto)
+//	{
+//		allocationservices.addAllocation(allocationdto);
+//		return "Allocation done for Employee ";
+//	}
+	
 	@GetMapping("/getAllAllocation")
 	public List<Map<String, Object>> getAllAllocation()
 	{
-		System.out.println(allocationservices.getAllAllocation());
 		return allocationservices.getAllAllocation();
 	}
 //	
@@ -56,6 +70,7 @@ public class AllocationController {
 	{
 		return allocationservices.getAllocationByEmpEmail(email);
 	}
+
 	
 	@GetMapping("/getAllocationByEmpId")
 	public List<Map<String, Object>> getAllocationByEmpId(@RequestParam String empid)
@@ -63,16 +78,19 @@ public class AllocationController {
 		return allocationservices.getAllocationByEmpId(empid);
 	}
 
+
 	@GetMapping("/getAllocationHistory")
 	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
 	{
 		return allocationservices.getAllocationHistory(empId);
 	}
 	
+
 	@GetMapping("/checkExistingWork")
 	public Response checkExistingWork(@RequestParam("empid") String empId)
 	{
 		return allocationservices.checkExistingWork(empId);
 	}
-	
+
+
 }

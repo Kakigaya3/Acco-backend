@@ -3,6 +3,8 @@ package com.accolite.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,10 +26,10 @@ public class EmployeeController {
 	public EmployeeServices employeeservices;
 	
 	@PostMapping("/addEmployee")
-	public Response addemployee(@RequestBody Employee employee)
+	public String addemployee(@RequestBody Employee employee)
 	{
 		employeeservices.addemployee(employee);
-		return new Response("Employee Added Successfully");
+		return "Employee Added";
 	}
 	
 	@GetMapping("/getAllEmployee")
@@ -45,8 +47,7 @@ public class EmployeeController {
 	@GetMapping("/getEmployeeByName")
 	public List<Employee> getEmployeeByName(@RequestParam String name)
 	{
-		List<Employee> emp=employeeservices.getEmployeeByName(name);
-		return emp;
+		return employeeservices.getEmployeeByName(name);
 	}
 	
 	@GetMapping("/getEmployeeByEmpId")
@@ -54,4 +55,6 @@ public class EmployeeController {
 	{
 		return employeeservices.getEmployeeByEmpId(empid);
 	}
+	
+	
 }
