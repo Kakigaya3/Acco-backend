@@ -56,22 +56,23 @@ public class AllocationController {
 	{
 		return allocationservices.getAllocationByEmpEmail(email);
 	}
-//	
-//	@GetMapping("/getAllocationHistoryByEmpEmail")
-//	public List<Map<String, Object>> getAllocationHistoryByEmpEmail(@RequestParam String email)
-//	{
-//		return allocationservices.getAllocationHistoryByEmpEmail(email);
-//	}
-//	
-//	@GetMapping("/getAllocationHistoryByEmpName")
-//	public List<Map<String, Object>> getAllocationHistoryByEmpName(@RequestParam String name)
-//	{
-//		return allocationservices.getAllocationHistoryByEmpName(name);
-//	}
+	
+	@GetMapping("/getAllocationByEmpId")
+	public List<Map<String, Object>> getAllocationByEmpId(@RequestParam String empid)
+	{
+		return allocationservices.getAllocationByEmpId(empid);
+	}
+
 	@GetMapping("/getAllocationHistory")
 	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
 	{
 		return allocationservices.getAllocationHistory(empId);
+	}
+	
+	@GetMapping("/checkExistingWork")
+	public Response checkExistingWork(@RequestParam("empid") String empId)
+	{
+		return allocationservices.checkExistingWork(empId);
 	}
 	
 }
