@@ -34,10 +34,12 @@ public class Allocation {
 	private Date modifiedOn;
 	private String modifiedBy;
 	
-	
+//	@OneToOne
+//	@JoinColumn(name = "employeeId", referencedColumnName = "employeeId")
 	private String employeeId;
 	
-	
+//	@OneToOne
+//	@JoinColumn(name = "clientId", referencedColumnName = "clientId")
 	private long clientId;
 	
 	
@@ -104,7 +106,7 @@ public class Allocation {
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
-
+	
 	public long getClientId() {
 		return clientId;
 	}
