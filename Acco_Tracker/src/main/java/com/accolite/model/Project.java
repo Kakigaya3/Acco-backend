@@ -25,9 +25,9 @@ public class Project {
 	private String projectDepartment;
 	private String projectLocation;
 	
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "clientId", referencedColumnName = "clientId")
-	private Client clientId;
+//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "clientId", referencedColumnName = "clientId")
+	private long clientId;
 	
 	private String clientSideManager;
 	private int isActive;
@@ -58,10 +58,10 @@ public class Project {
 	public void setProjectLocation(String projectLocation) {
 		this.projectLocation = projectLocation;
 	}
-	public Client getClientId() {
+	public long getClientId() {
 		return clientId;
 	}
-	public void setClientId(Client clientId) {
+	public void setClientId(long clientId) {
 		this.clientId = clientId;
 	}
 	public String getClientSideManager() {
@@ -89,7 +89,7 @@ public class Project {
 		this.modifiedOn = modifiedOn;
 	}
 	public Project(String projectId, String projectName, String projectDepartment, String projectLocation,
-			Client clientId, String clientSideManager, int isActive, String modifiedBy, Date modifiedOn) {
+			long clientId, String clientSideManager, int isActive, String modifiedBy, Date modifiedOn) {
 		super();
 		this.projectId = projectId;
 		this.projectName = projectName;
