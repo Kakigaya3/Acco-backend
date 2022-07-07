@@ -58,10 +58,13 @@ public class AllocationServices {
 	}
 
 	public Response checkExistingWork(String empId) {
-		if(allocationRepo.checkExisitngWork(empId)==null)
+		List<Allocation> a=allocationRepo.checkExisitngWork(empId);
+		if(a.size()==0)
 		{
+			System.out.println("No");
 			return new Response("No");
 		}
+		System.out.println("Yes");
 		return new Response("Yes");
 	}
 

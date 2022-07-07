@@ -26,12 +26,12 @@ public class ClientServices {
 
 	
 	public List<Client> getClientByClientName(String clientName) {
-		return clientRepo.getClientByClientName(clientName);
+		return clientRepo.getClientByClientName(clientName.toLowerCase());
 	}
 
 
 	public List<Client> getClientByDomainName(String domainName) {
-		return clientRepo.getClientByDomainName(domainName);
+		return clientRepo.getClientByDomainName(domainName.toLowerCase());
 	}
 
 	

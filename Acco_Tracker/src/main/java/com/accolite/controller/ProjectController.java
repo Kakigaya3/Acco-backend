@@ -1,6 +1,7 @@
 package com.accolite.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class ProjectController {
 	@Autowired
 	public ProjectServices projectservices;
 	
-	@PostMapping("/project")
-	public Response addProject(@RequestParam String proj) throws IOException
+	@PostMapping("/addProject")
+	public Response addProject(@RequestParam("project") String proj) throws IOException
 	{   
 		ObjectMapper obj=new ObjectMapper();
 		obj.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
@@ -51,9 +52,23 @@ public class ProjectController {
 		return projectservices.getProjectByProjectId(projectId);
 	}
 	
-	@GetMapping("/getProjectByProjectName")
-	public Project getProjectByProjectName(@RequestParam String projectName)
+	@GetMapping("/getAllProject")
+	public List<Project> getAllPProject()
 	{
+		return projectservices.getAllProject();
+	}
+	@GetMapping("/getProjectByProjectName")
+	public List<Project> getProjectByProjectName(@RequestParam("name") String projectName)
+	{
+		System.out.println(projectName);
 		return projectservices.getProjectByProjectName(projectName);
+	}
+	
+	@GetMapping("/getProjectByClientId")
+	public List<Project> getProjectByClientId(@RequestParam("clientid") String clientId)
+	{
+		
+		int clientid=Integer.valueOf(clientId);
+		return projectservices.getProjectByClientId(clientid);
 	}
 }

@@ -40,18 +40,7 @@ public class AllocationController {
 		return new Response("Allocation done for Employee "+ allocation.getEmployeeId());
 	}
 	
-//	@PostMapping("/saveAllocation")
-//	public Response saveAllocation(@RequestBody Allocation allocation)
-//	{
-//		allocationservices.saveAllocation(allocation);
-//		return new Response("Allocation done");
-//	}
-//	@PostMapping("/addAllocation")
-//     public String addAllocation(AllocationDto allocationdto)
-//	{
-//		allocationservices.addAllocation(allocationdto);
-//		return "Allocation done for Employee ";
-//	}
+
 	
 	@GetMapping("/getAllAllocation")
 	public List<Map<String, Object>> getAllAllocation()
