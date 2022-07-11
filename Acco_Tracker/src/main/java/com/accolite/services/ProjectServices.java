@@ -28,7 +28,7 @@ public class ProjectServices {
 	}
 
 	public List<Project> getAllProject() {
-		return projectRepo.findAll();
+		return projectRepo.findAllProjects();
 	} 
 	
 	public List<Project> getProjectByClientId(int clientId) {

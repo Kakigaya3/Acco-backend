@@ -16,12 +16,16 @@ import com.accolite.model.Project;
 public interface ProjectRepository extends JpaRepository<Project, String> {
 
 	@Transactional
-	@Query(value = "select * from project p where p.project_name like ?1%", nativeQuery = true)
+	@Query(value = "select * from project p where p.project_name like ?1% and p.client_id is not null", nativeQuery = true)
 	List<Project> getProjectByProjectName(@Param("projectName") String projectName);
 	
 	
 	@Transactional
 	@Query(value = "select * from project p where p.client_id = ?1", nativeQuery = true)
 	List<Project> getProjectByClientId(int clientId);
+	
+	@Transactional
+	@Query(value = "select * from project p where p.client_id is not null", nativeQuery = true)
+	List<Project> findAllProjects();
 
 }
