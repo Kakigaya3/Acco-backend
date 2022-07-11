@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.accolite.model.Client;
 import com.accolite.model.Project;
+import com.accolite.model.Response;
 import com.accolite.repository.ProjectRepository;
 
 @Service
@@ -15,8 +17,19 @@ public class ProjectServices {
 	@Autowired
 	public ProjectRepository projectRepo;
 
-	public void addProject(Project project) {
-        	projectRepo.save(project);	
+	public Response addProject(Project project) {
+		try
+		{
+		String id = project.getProjectId();
+		Project p = projectRepo.findById(id).get();
+		return new Response("Project already exist");
+		}
+		 //System.out.println(e);
+		catch(Exception e)
+		{
+			projectRepo.save(project);
+			return new Response("New project created successfully");
+		}
 	}
 
 	public Project getProjectByProjectId(String projectId) {

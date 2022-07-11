@@ -34,8 +34,8 @@ public class ProjectController {
 		ObjectMapper obj=new ObjectMapper();
 		obj.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
 		Project project=obj.readValue(proj,Project.class);
-		projectservices.addProject(project);
-		return new Response("Allocation done for Employee "+ project.getProjectId());
+		return projectservices.addProject(project);
+		
 	}
 	
 //	@PostMapping("/addProject")

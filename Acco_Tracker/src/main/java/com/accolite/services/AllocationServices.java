@@ -21,14 +21,14 @@ public class AllocationServices {
 	public AllocationRepository allocationRepo;
 
 	public void addAllocation(Allocation allocation) {
-		String id=allocation.getEmployeeId();
-		Allocation alloc=allocationRepo.getAllocationByEmpId(id)
-;
-		if(alloc!=null) {
-			alloc.setIsActive(0);
-			alloc.setEndDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-			allocationRepo.save(alloc);
-		}
+//		String id=allocation.getEmployeeId();
+//		Allocation alloc=allocationRepo.getAllocationByEmpId(id)
+//;
+//		if(alloc!=null) {
+//			alloc.setIsActive(0);
+//			alloc.setEndDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+//			allocationRepo.save(alloc);
+//		}
         allocationRepo.save(allocation);		
 	}
 	

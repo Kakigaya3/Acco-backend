@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.model.Client;
+import com.accolite.model.Response;
 import com.accolite.services.ClientServices;
 
 
@@ -24,9 +25,9 @@ public class ClientController {
 	public ClientServices clientservices;
 	
 	@PostMapping("/addClient")
-	public void addClient(@RequestBody Client client)
+	public Response addClient(@RequestBody Client client)
 	{
-		clientservices.addClient(client);
+		return clientservices.addClient(client);
 	}
 	
 	@GetMapping("/getAllClient")

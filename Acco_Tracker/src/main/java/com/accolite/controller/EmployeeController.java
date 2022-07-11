@@ -26,10 +26,10 @@ public class EmployeeController {
 	public EmployeeServices employeeservices;
 	
 	@PostMapping("/addEmployee")
-	public String addemployee(@RequestBody Employee employee)
+	public Response addemployee(@RequestBody Employee employee)
 	{
-		employeeservices.addemployee(employee);
-		return "Employee Added";
+		return employeeservices.addemployee(employee);
+		
 	}
 	
 	@GetMapping("/getAllEmployee")
