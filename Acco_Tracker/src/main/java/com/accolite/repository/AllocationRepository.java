@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.accolite.model.Allocation;
+import com.accolite.model.Response;
 
 
 @Repository
@@ -79,6 +80,10 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 	@Transactional
 	@Query(value="select * from allocation a where a.employee_id = ?1",nativeQuery = true)
 	List<Allocation> checkExisitngWork(String empId);
+
+	@Transactional
+	@Query(value = "select employee_id from employee where employee_id not in(select employee_id from allocation)", nativeQuery = true)
+	List<String> checkAllocation(String empId);
 	
 
 }

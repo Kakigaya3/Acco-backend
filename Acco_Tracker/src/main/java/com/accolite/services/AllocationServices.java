@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,14 +23,13 @@ public class AllocationServices {
 	public AllocationRepository allocationRepo;
 
 	public void addAllocation(Allocation allocation) {
-//		String id=allocation.getEmployeeId();
-//		Allocation alloc=allocationRepo.getAllocationByEmpId(id)
-//;
-//		if(alloc!=null) {
-//			alloc.setIsActive(0);
-//			alloc.setEndDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-//			allocationRepo.save(alloc);
-//		}
+		String id=allocation.getEmployeeId();
+		Allocation alloc=allocationRepo.getAllocationByEmpId(id);
+		if(alloc!=null) {
+			alloc.setIsActive(0);
+			alloc.setEndDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+			allocationRepo.save(alloc);
+		}
         allocationRepo.save(allocation);		
 	}
 	
@@ -68,4 +69,15 @@ public class AllocationServices {
 		return new Response("Yes");
 	}
 
+	public ResponseEntity<String> checkAllocation(String empId) {
+	    List<String> notalloted = allocationRepo.checkAllocation(empId);
+	    if(notalloted.contains(empId))
+	    {
+	    	return new ResponseEntity<>(HttpStatus.OK);
+	    }
+	    else
+	    {
+	    	return new ResponseEntity<>("Enter valid employee id",HttpStatus.BAD_REQUEST);
+	    }
+	}
 }
