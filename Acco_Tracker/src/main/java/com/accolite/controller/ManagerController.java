@@ -1,6 +1,7 @@
 package com.accolite.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +20,9 @@ public class ManagerController {
 	public ManagerServices managerservices;
 	
 	@GetMapping("/isManager")
-	public Response checkuser(@RequestParam("email") String email)
+	public ResponseEntity<Response> checkuser(@RequestParam("email") String email)
 	{
-		String res=managerservices.checkuser(email);;
-		return new Response(res);
+		return managerservices.checkuser(email);
+		
 	}
 }

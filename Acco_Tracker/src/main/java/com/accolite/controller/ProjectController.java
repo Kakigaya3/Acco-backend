@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class ProjectController {
 	public ProjectServices projectservices;
 	
 	@PostMapping("/addProject")
-	public Response addProject(@RequestParam("project") String proj) throws IOException
+	public ResponseEntity<Response> addProject(@RequestParam("project") String proj) throws IOException
 	{   
 		ObjectMapper obj=new ObjectMapper();
 		obj.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);

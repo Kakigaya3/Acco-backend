@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,13 +33,13 @@ public class AllocationController {
 	public AllocationServices allocationservices;
 	
 	@PostMapping("/addAllocation")
-	public Response addAllocation(@RequestParam("alloc") String alloc) throws IOException
+	public ResponseEntity<Response> addAllocation(@RequestParam("alloc") String alloc) throws IOException
 	{   
 		ObjectMapper obj=new ObjectMapper();
 		obj.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
 	    Allocation allocation=obj.readValue(alloc,Allocation.class);
 		allocationservices.addAllocation(allocation);
-		return new Response("Allocation done for Employee "+ allocation.getEmployeeId());
+		return new ResponseEntity<>(new Response("Allocation done for Employee "+ allocation.getEmployeeId()),HttpStatus.OK);
 	}
 	
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.accolite.model.Client;
@@ -17,18 +19,18 @@ public class ProjectServices {
 	@Autowired
 	public ProjectRepository projectRepo;
 
-	public Response addProject(Project project) {
+	public ResponseEntity<Response> addProject(Project project) {
 		try
 		{
 		String id = project.getProjectId();
 		Project p = projectRepo.findById(id).get();
-		return new Response("Project already exist");
+		return new ResponseEntity<>(new Response("Project already exist"),HttpStatus.BAD_REQUEST);
 		}
 		 //System.out.println(e);
 		catch(Exception e)
 		{
 			projectRepo.save(project);
-			return new Response("New project created successfully");
+			return new ResponseEntity<>(new Response("New project created successfully"),HttpStatus.OK);
 		}
 	}
 

@@ -54,11 +54,11 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 	@Modifying(clearAutomatically=true)
 	@Transactional
 	@Query(value = "select  employee_id, employee_name, employee_email, project_name,\r\n"
-			+ "			project_department, project_location, is_active, client_name,start_date,end_date from (select e.employee_id, e.employee_name, e.employee_email, p.project_name,\r\n"
+			+ "			project_department, project_location, is_active, client_name,start_date,end_date from (select a.allocation_id,e.employee_id, e.employee_name, e.employee_email, p.project_name,\r\n"
 			+ "			p.project_department, p.project_location, a.is_active, c.client_name,a.start_date,a.end_date,row_number() over (partition by e.employee_id order by a.allocation_id desc) as temp \r\n"
 			+ "			from allocation a join employee e on a.employee_id = e.employee_id and e.employee_id like ?1% \r\n"
 			+ "			join client c on a.client_id = c.client_id \r\n"
-			+ "			join project p on a.project_id = p.project_id) as ranks where temp=1 ",nativeQuery=true)
+			+ "			join project p on a.project_id = p.project_id) as ranks where temp=1 order by allocation_id",nativeQuery=true)
 	List<Map<String, Object>> getAllocationEmpId(@Param("id") String id);
 
 
@@ -82,7 +82,7 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 	List<Allocation> checkExisitngWork(String empId);
 
 	@Transactional
-	@Query(value = "select employee_id from employee where employee_id not in(select employee_id from allocation)", nativeQuery = true)
+	@Query(value = "select employee_id from employee ", nativeQuery = true)
 	List<String> checkAllocation(String empId);
 	
 
