@@ -48,4 +48,8 @@ public class ClientController {
 	{
 		return clientservices.getClientByDomainName(domainName);
 	}
+	@GetMapping("/noOfClients")
+	public long findNoOfClients() {
+		return clientservices.findNoOfClients();
+	}
 }

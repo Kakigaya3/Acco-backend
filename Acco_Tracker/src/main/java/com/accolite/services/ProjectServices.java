@@ -49,4 +49,7 @@ public class ProjectServices {
 	public List<Project> getProjectByClientId(int clientId) {
 		return projectRepo.getProjectByClientId(clientId);
 	} 
+	public long findNoOfProjects() {
+		return projectRepo.findAll().size()-1;
+	}
 }

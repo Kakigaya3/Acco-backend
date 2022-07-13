@@ -12,9 +12,9 @@ import com.accolite.model.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, String>{
 
-	@Query("select e from Employee e where e.employeeEmail like ?1%")
+	@Query("select e from Employee e where e.employeeEmail like %?1%")
 	List<Employee> getEmployeeByEmail(@Param("email") String email);
 
-	@Query("select e from Employee e where e.employeeName like ?1%")
+	@Query("select e from Employee e where e.employeeName like %?1%")
 	List<Employee> getEmployeeByName(@Param("name") String name);
 }

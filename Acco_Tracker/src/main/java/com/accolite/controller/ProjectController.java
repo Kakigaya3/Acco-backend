@@ -72,4 +72,8 @@ public class ProjectController {
 		int clientid=Integer.valueOf(clientId);
 		return projectservices.getProjectByClientId(clientid);
 	}
+	@GetMapping("/noOfProjects")
+	public long findNoOfProjects() {
+		return projectservices.findNoOfProjects();
+	}
 }

@@ -35,7 +35,7 @@ public class ClientServices {
 
 	
 	public List<Client> getAllClient() {
-		return clientRepo.findAll();
+		return clientRepo.findAllClients();
 	}
 
 	
@@ -47,6 +47,8 @@ public class ClientServices {
 	public List<Client> getClientByDomainName(String domainName) {
 		return clientRepo.getClientByDomainName(domainName.toLowerCase());
 	}
-
+	public long findNoOfClients() {
+		return clientRepo.findAll().size()-1;
+	}
 	
 }
