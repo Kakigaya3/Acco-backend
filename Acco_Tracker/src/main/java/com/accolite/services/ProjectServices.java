@@ -23,11 +23,19 @@ public class ProjectServices {
 		return projectRepo.findById(projectId).get();
 	}
 
-	public Project getProjectByProjectName(String projectName) {
-		return projectRepo.getProjectByProjectName(projectName).get();
+
+	public List<Project> getProjectByProjectName(String projectName) {
+		return projectRepo.getProjectByProjectName(projectName.toLowerCase());
+
 	}
 
 	public List<Project> getAllProject() {
 		return projectRepo.findAll();
+
+	} 
+	
+	public List<Project> getProjectByClientId(int clientId) {
+		return projectRepo.getProjectByClientId(clientId);
+
 	} 
 }

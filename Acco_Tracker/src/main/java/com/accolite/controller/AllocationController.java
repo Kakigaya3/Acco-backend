@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.model.Allocation;
-import com.accolite.model.AllocationDto;
+
 import com.accolite.model.DtoClass;
 import com.accolite.model.Response;
 import com.accolite.services.AllocationServices;
@@ -40,18 +40,7 @@ public class AllocationController {
 		return new Response("Allocation done for Employee "+ allocation.getEmployeeId());
 	}
 	
-//	@PostMapping("/saveAllocation")
-//	public Response saveAllocation(@RequestBody Allocation allocation)
-//	{
-//		allocationservices.saveAllocation(allocation);
-//		return new Response("Allocation done");
-//	}
-//	@PostMapping("/addAllocation")
-//     public String addAllocation(AllocationDto allocationdto)
-//	{
-//		allocationservices.addAllocation(allocationdto);
-//		return "Allocation done for Employee ";
-//	}
+
 	
 	@GetMapping("/getAllAllocation")
 	public List<Map<String, Object>> getAllAllocation()
@@ -70,16 +59,27 @@ public class AllocationController {
 	{
 		return allocationservices.getAllocationByEmpEmail(email);
 	}
-//	
+
+	
+	@GetMapping("/getAllocationByEmpId")
+	public List<Map<String, Object>> getAllocationByEmpId(@RequestParam String empid)
+	{
+		return allocationservices.getAllocationByEmpId(empid);
+	}
+
+
 	@GetMapping("/getAllocationHistory")
 	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
 	{
 		return allocationservices.getAllocationHistory(empId);
 	}
 	
-//	@GetMapping("/getAllocationHistoryByEmpName")
-//	public List<Map<String, Object>> getAllocationHistoryByEmpName(@RequestParam String name)
-//	{
-//		return allocationservices.getAllocationHistoryByEmpName(name);
-//	}
+
+	@GetMapping("/checkExistingWork")
+	public Response checkExistingWork(@RequestParam("empid") String empId)
+	{
+		return allocationservices.checkExistingWork(empId);
+	}
+
+
 }

@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.accolite.model.Allocation;
-import com.accolite.model.AllocationDto;
+
 import com.accolite.model.DtoClass;
+import com.accolite.model.Response;
 import com.accolite.repository.AllocationRepository;
 
 @Service
@@ -46,16 +47,25 @@ public class AllocationServices {
 	public List<Map<String, Object>> getAllocationByEmpEmail(String email) {
 		return allocationRepo.getAllocationByEmpEmail(email);
 	}
-//
+
+	public List<Map<String, Object>> getAllocationByEmpId(String id) {
+		return allocationRepo.getAllocationEmpId(id);
+	}
+
+
 	public List<Map<String, Object>> getAllocationHistory(String empId) {
 		return allocationRepo.getAllocationHistory(empId);
 	}
 
-//	public void saveAllocation(Allocation allocation) {
-//        allocationRepo.save(allocation);		
-//	}
-	
-//	public List<Map<String, Object>> getAllocationHistoryByEmpName(String name) {
-//		return allocationRepo.getAllocationHistoryByEmpName(name);
-//	}
+	public Response checkExistingWork(String empId) {
+		List<Allocation> a=allocationRepo.checkExisitngWork(empId);
+		if(a.size()==0)
+		{
+			System.out.println("No");
+			return new Response("No");
+		}
+		System.out.println("Yes");
+		return new Response("Yes");
+	}
+
 }

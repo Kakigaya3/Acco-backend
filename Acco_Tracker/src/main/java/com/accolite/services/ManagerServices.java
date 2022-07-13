@@ -23,7 +23,7 @@ public class ManagerServices {
         {
         	return "Failure";
         }
-        return email;
+        return "Success";
 	}
 
 }

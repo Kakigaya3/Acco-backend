@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accolite.model.Response;
 import com.accolite.services.ManagerServices;
 
 @RestController
@@ -18,8 +19,9 @@ public class ManagerController {
 	public ManagerServices managerservices;
 	
 	@GetMapping("/isManager")
-	public String checkuser(@RequestParam String email)
+	public Response checkuser(@RequestParam("email") String email)
 	{
-		return managerservices.checkuser(email);
+		String res=managerservices.checkuser(email);;
+		return new Response(res);
 	}
 }
