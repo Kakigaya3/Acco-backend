@@ -48,12 +48,15 @@ public class ProjectServices {
 		return projectRepo.getAllProject();
 	} 
 	
-	public List<Project> getProjectByClientId(int clientId) {
-		return projectRepo.getProjectByClientId(clientId);
-
-	}
+//	public List<Project> getProjectByClientId(int clientId) {
+//		return projectRepo.getProjectByClientId(clientId);
+//
+//	}
 
 	public Project getProjectBySwiftCode(String swiftCode) {
 		return projectRepo.getProjectBySwiftCode(swiftCode);
 	} 
+	public long findNoOfProjects() {
+		return projectRepo.findAll().size()-1;
+	}
 }

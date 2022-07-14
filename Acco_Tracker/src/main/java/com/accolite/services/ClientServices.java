@@ -35,7 +35,7 @@ public class ClientServices {
 
 	
 	public List<Client> getAllClient() {
-		return clientRepo.findAll();
+		return clientRepo.findAllClients();
 	}
 
 	
@@ -49,9 +49,18 @@ public class ClientServices {
 	}
 
 
-	public long getClientCount() {
-		return clientRepo.getClientCount();
+	public long findNoOfClients() {
+		return clientRepo.findAll().size()-1;
 	}
-
+	
+	public List<Client> updatestatus(long clientid,int status) {
+		try {
+		clientRepo.updatestatus(clientid,status);
+		return clientRepo.findAllClients();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 }

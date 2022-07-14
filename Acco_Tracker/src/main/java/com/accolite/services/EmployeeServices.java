@@ -46,5 +46,8 @@ public class EmployeeServices {
 	public Employee getEmployeeByEmpId(long empId) {
 		return employeeRepo.findById(empId).get();
 	}
-	
+
+	public long findNoOfEmployees() {
+		return employeeRepo.findAll().size();
+	}
 }

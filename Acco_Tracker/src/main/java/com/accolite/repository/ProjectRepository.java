@@ -16,13 +16,11 @@ import com.accolite.model.Project;
 public interface ProjectRepository extends JpaRepository<Project, String> {
 
 	@Transactional
-	@Query(value = "select * from project p where p.project_name like ?1% and p.client_id is not null", nativeQuery = true)
+	@Query(value = "select * from project p where p.project_name like %?1% ", nativeQuery = true)
 	List<Project> getProjectByProjectName(@Param("projectName") String projectName);
 	
 	
-	@Transactional
-	@Query(value = "select * from project p where p.client_id = ?1", nativeQuery = true)
-	List<Project> getProjectByClientId(int clientId);
+	
 	
 	@Transactional
 	@Query(value = "select   c.domain_name, c.client_name, p.swift_code, p.division, \r\n"
@@ -35,6 +33,7 @@ public interface ProjectRepository extends JpaRepository<Project, String> {
 			+ "			   on p.swift_code = a.swift_code\r\n"
 			+ "			       group by a.swift_code",nativeQuery = true)
 	List<Project> getAllProject();
+	
 
 
 	@Query(value = "select * from project p where p.swift_code = ?1",nativeQuery = true)

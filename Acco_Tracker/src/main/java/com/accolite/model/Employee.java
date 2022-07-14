@@ -25,7 +25,7 @@ public class Employee {
 	private long employeeId;
 	private String employeeName;
 	private String employeeEmail;
-	private String techStack;
+	private String skills;
 	private long years;
 	@Max(value = 12)
 	private long months;
@@ -61,12 +61,12 @@ public class Employee {
 		this.employeeEmail = employeeEmail;
 	}
 
-	public String getTechStack() {
-		return techStack;
+	public String getSkills() {
+		return skills;
 	}
 
-	public void setTechStack(String techStack) {
-		this.techStack = techStack;
+	public void setSkills(String techStack) {
+		this.skills = skills;
 	}
 
 	public long getYears() {
@@ -109,13 +109,13 @@ public class Employee {
 		this.modifiedOn = modifiedOn;
 	}
 
-	public Employee(long employeeId, String employeeName, String employeeEmail, String techStack, long years,
+	public Employee(long employeeId, String employeeName, String employeeEmail, String skills, long years,
 			long months, String status, String modifiedBy, LocalDateTime modifiedOn) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeName = employeeName;
 		this.employeeEmail = employeeEmail;
-		this.techStack = techStack;
+		this.skills = skills;
 		this.years = years;
 		this.months = months;
 		this.status = status;

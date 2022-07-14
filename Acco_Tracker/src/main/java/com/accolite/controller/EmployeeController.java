@@ -55,6 +55,9 @@ public class EmployeeController {
 	{
 		return employeeservices.getEmployeeByEmpId(empId);
 	}
-	
+	@GetMapping("/noOfEmployees")
+	public long findNoOfEmployees() {
+		return employeeservices.findNoOfEmployees();
+	}
 	
 }

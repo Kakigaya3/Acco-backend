@@ -59,6 +59,7 @@ public class ProjectController {
 		return projectservices.getAllProject();
 	}
 	
+
 //	@GetMapping("/getProjectByProjectName")
 //	public List<Project> getProjectByProjectName(@RequestParam("name") String projectName)
 //	{
@@ -73,4 +74,15 @@ public class ProjectController {
 //	}
 //	
 	
+//	@GetMapping("/getProjectByClientId")
+//	public List<Project> getProjectByClientId(@RequestParam("clientid") String clientId)
+//	{
+//		
+//		int clientid=Integer.valueOf(clientId);
+//		return projectservices.getProjectByClientId(clientid);
+//	}
+	@GetMapping("/noOfProjects")
+	public long findNoOfProjects() {
+		return projectservices.findNoOfProjects();
+	}
 }
