@@ -75,11 +75,11 @@ public class AllocationController {
 	}
 
 
-	@GetMapping("/getAllocationHistory")
-	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
-	{
-		return allocationservices.getAllocationHistory(empId);
-	}
+//	@GetMapping("/getAllocationHistory")
+//	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
+//	{
+//		return allocationservices.getAllocationHistory(empId);
+//	}
 	
 
 	@GetMapping("/checkExistingWork")

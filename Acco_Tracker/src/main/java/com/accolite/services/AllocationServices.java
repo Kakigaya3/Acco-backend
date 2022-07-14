@@ -55,9 +55,9 @@ public class AllocationServices {
 	}
 
 
-	public List<Map<String, Object>> getAllocationHistory(String empId) {
-		return allocationRepo.getAllocationHistory(empId);
-	}
+//	public List<Map<String, Object>> getAllocationHistory(String empId) {
+//		return allocationRepo.getAllocationHistory(empId);
+//	}
 
 	public Response checkExistingWork(String empId) {
 		List<Allocation> a=allocationRepo.checkExisitngWork(empId);

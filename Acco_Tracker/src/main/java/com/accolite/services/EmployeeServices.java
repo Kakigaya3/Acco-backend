@@ -53,4 +53,15 @@ public class EmployeeServices {
 	public long findNoOfEmployees() {
 		return employeeRepo.findAll().size();
 	}
+	public List<Employee> updateEmployee(long empId, String status) {
+		try
+		{
+			employeeRepo.updateEmployee(empId, status);
+			return employeeRepo.findAll();
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
+	}
 }

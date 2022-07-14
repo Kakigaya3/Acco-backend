@@ -62,15 +62,15 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 	List<Map<String, Object>> getAllocationEmpId(@Param("id") String id);
 
 
-	@Modifying(clearAutomatically=true)
-	@Transactional
-	@Query(value = "select e.employee_id, e.employee_name, e.employee_email, p.project_name, "
-			+ "p.project_department, p.project_location, a.is_active, c.client_name, start_date, end_date "
-			+ "from allocation a join employee e on a.employee_id = e.employee_id and e.employee_id = ?1 "
-			+ "join client c on a.client_id = c.client_id "
-			+ "join project p on a.project_id = p.project_id "
-			+ "order by a.allocation_id desc",nativeQuery=true)
-	List<Map<String, Object>> getAllocationHistory(@Param("empId") String empId);
+//	@Modifying(clearAutomatically=true)
+//	@Transactional
+//	@Query(value = "select e.employee_id, e.employee_name, e.employee_email, p.project_name, "
+//			+ "p.project_department, p.project_location, a.is_active, c.client_name, start_date, end_date "
+//			+ "from allocation a join employee e on a.employee_id = e.employee_id and e.employee_id = ?1 "
+//			+ "join client c on a.client_id = c.client_id "
+//			+ "join project p on a.project_id = p.project_id "
+//			+ "order by a.allocation_id desc",nativeQuery=true)
+//	List<Map<String, Object>> getAllocationHistory(@Param("empId") String empId);
 
 	@Transactional
 	@Query(value="select * from allocation a where a.employee_id=?1 and a.is_active=1",nativeQuery=true)
