@@ -17,4 +17,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	@Query("select e from Employee e where e.employeeName like %?1%")
 	List<Employee> getEmployeeByName(@Param("name") String name);
+	
+	@Query("select e from Employee e where e.employeeId = ?1")
+	Employee getEmployeeByEmployeeId(@Param("empId") long empId);
 }

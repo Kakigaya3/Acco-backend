@@ -1,7 +1,7 @@
 package com.accolite.services;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,16 +19,19 @@ public class EmployeeServices {
 	public EmployeeRepository employeeRepo;
 	
 	public ResponseEntity<Response> addemployee(Employee employee) {
-		try {
 		 long id=employee.getEmployeeId();
-		 Employee e=employeeRepo.findById(id).get();
+		 Employee e=employeeRepo.getEmployeeByEmployeeId(id);
 		 //System.out.println(e);
-	     return new ResponseEntity<>(new Response("Employee already exists"),HttpStatus.BAD_REQUEST);
-		 }catch(Exception e) {
-         employeeRepo.save(employee);
-         return new ResponseEntity<>(new Response("Employee added successfully"),HttpStatus.OK);
+		 if(e!=null)
+		 {
+		       return new ResponseEntity<>(new Response("Employee already exists"),HttpStatus.BAD_REQUEST);
 		 }
-         
+		 else
+		 {
+	         employeeRepo.save(employee);
+	         return new ResponseEntity<>(new Response("Employee added successfully"),HttpStatus.OK);
+		 }
+        
 	}
 
 	public List<Employee> getAllEmployee() {
