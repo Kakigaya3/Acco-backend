@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,28 +29,27 @@ public class ProjectController {
 	@Autowired
 	public ProjectServices projectservices;
 	
-	@PostMapping("/addProject")
-	public Response addProject(@RequestParam("project") String proj) throws IOException
-	{   
-		ObjectMapper obj=new ObjectMapper();
-		obj.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
-		Project project=obj.readValue(proj,Project.class);
-		projectservices.addProject(project);
-		return new Response("Allocation done for Employee "+ project.getProjectId());
-	}
-	
 //	@PostMapping("/addProject")
-//	public String addProject(@RequestBody Project project)
-//	{
-//		projectservices.addProject(project);
-//		return "Project Created";
+//	public ResponseEntity<Response> addProject(@RequestParam("project") String proj) throws IOException
+//	{   
+//		ObjectMapper obj=new ObjectMapper();
+//		obj.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+//		Project project=obj.readValue(proj,Project.class);
+//		return projectservices.addProject(project);
+//		
 //	}
 	
-	
-	@GetMapping("/getProjectByProjectId")
-	public Project getProjectByProjectId(@RequestParam String projectId)
+	@PostMapping("/addProject")
+	public ResponseEntity<Response> addProject(@RequestBody Project project)
 	{
-		return projectservices.getProjectByProjectId(projectId);
+		return projectservices.addProject(project);
+	}
+	
+	
+	@GetMapping("/getProjectBySwiftCode")
+	public Project getProjectBySwiftCode(@RequestParam String swiftCode)
+	{
+		return projectservices.getProjectBySwiftCode(swiftCode);
 	}
 	
 	@GetMapping("/getAllProject")
@@ -59,18 +59,18 @@ public class ProjectController {
 		return projectservices.getAllProject();
 	}
 	
-	@GetMapping("/getProjectByProjectName")
-	public List<Project> getProjectByProjectName(@RequestParam("name") String projectName)
-	{
-		System.out.println(projectName);
-		return projectservices.getProjectByProjectName(projectName);
-	}
+//	@GetMapping("/getProjectByProjectName")
+//	public List<Project> getProjectByProjectName(@RequestParam("name") String projectName)
+//	{
+//		System.out.println(projectName);
+//		return projectservices.getProjectByProjectName(projectName);
+//	}
+//	
+//	@GetMapping("/getProjectByClientName")
+//	public List<Project> getProjectByClientName(@RequestParam String clientName)
+//	{
+//			return projectservices.getProjectByClientName(clientName);
+//	}
+//	
 	
-	@GetMapping("/getProjectByClientId")
-	public List<Project> getProjectByClientId(@RequestParam("clientid") String clientId)
-	{
-		
-		int clientid=Integer.valueOf(clientId);
-		return projectservices.getProjectByClientId(clientid);
-	}
 }

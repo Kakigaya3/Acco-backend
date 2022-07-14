@@ -1,6 +1,7 @@
 package com.accolite.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,13 +26,10 @@ public class Allocation {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long allocationId;
 	private int isActive = 1;
-	private String projectId;
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date startDate;
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date endDate = null;
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date modifiedOn;
+	private String swiftCode;
+	private LocalDateTime startDate;
+	private LocalDateTime endDate = null;
+	private LocalDateTime modifiedOn;
 	private String modifiedBy;
 	
 //	@OneToOne
@@ -41,8 +39,7 @@ public class Allocation {
 //	@OneToOne
 //	@JoinColumn(name = "clientId", referencedColumnName = "clientId")
 	private long clientId;
-	
-	
+
 	public long getAllocationId() {
 		return allocationId;
 	}
@@ -59,35 +56,35 @@ public class Allocation {
 		this.isActive = isActive;
 	}
 
-	public String getProjectId() {
-		return projectId;
+	public String getSwiftCode() {
+		return swiftCode;
 	}
 
-	public void setProjectId(String projectId) {
-		this.projectId = projectId;
+	public void setSwiftCode(String swiftCode) {
+		this.swiftCode = swiftCode;
 	}
 
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(Date endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
 
-	public Date getModifiedOn() {
+	public LocalDateTime getModifiedOn() {
 		return modifiedOn;
 	}
 
-	public void setModifiedOn(Date modifiedOn) {
+	public void setModifiedOn(LocalDateTime modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
 
@@ -106,7 +103,7 @@ public class Allocation {
 	public void setEmployeeId(String employeeId) {
 		this.employeeId = employeeId;
 	}
-	
+
 	public long getClientId() {
 		return clientId;
 	}
@@ -115,12 +112,12 @@ public class Allocation {
 		this.clientId = clientId;
 	}
 
-	public Allocation(long allocationId, int isActive, String projectId, Date startDate, Date endDate, Date modifiedOn,
-			String modifiedBy, String employeeId, long clientId) {
+	public Allocation(long allocationId, int isActive, String swiftCode, LocalDateTime startDate, LocalDateTime endDate,
+			LocalDateTime modifiedOn, String modifiedBy, String employeeId, long clientId) {
 		super();
 		this.allocationId = allocationId;
 		this.isActive = isActive;
-		this.projectId = projectId;
+		this.swiftCode = swiftCode;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.modifiedOn = modifiedOn;
@@ -133,7 +130,7 @@ public class Allocation {
 		super();
 	}
 	
-//	(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	
+	
+	
 	
 }

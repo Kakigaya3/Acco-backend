@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.accolite.model.Employee;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, String>{
+public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	@Query("select e from Employee e where e.employeeEmail like ?1%")
 	List<Employee> getEmployeeByEmail(@Param("email") String email);

@@ -1,6 +1,7 @@
 package com.accolite.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,8 +25,7 @@ public class Client {
 	private String domainName;
 	private int isActive;
 	private String modifiedBy;
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date modifiedOn;
+	private LocalDateTime modifiedOn;
 	public long getClientId() {
 		return clientId;
 	}
@@ -56,14 +56,14 @@ public class Client {
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
-	public Date getModifiedOn() {
+	public LocalDateTime getModifiedOn() {
 		return modifiedOn;
 	}
-	public void setModifiedOn(Date modifiedOn) {
+	public void setModifiedOn(LocalDateTime modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
 	public Client(long clientId, String clientName, String domainName, int isActive, String modifiedBy,
-			Date modifiedOn) {
+			LocalDateTime modifiedOn) {
 		super();
 		this.clientId = clientId;
 		this.clientName = clientName;

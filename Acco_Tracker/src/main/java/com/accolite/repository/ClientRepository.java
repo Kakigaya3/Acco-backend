@@ -17,4 +17,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 	@Query(value = "select * from client where domain_name like ?1%", nativeQuery = true)
 	List<Client> getClientByDomainName(String domainName);
 
+	@Query(value = "select count(*) as total_clients from client",nativeQuery = true)
+	long getClientCount();
+
 }

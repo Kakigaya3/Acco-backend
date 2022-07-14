@@ -26,10 +26,10 @@ public class EmployeeController {
 	public EmployeeServices employeeservices;
 	
 	@PostMapping("/addEmployee")
-	public String addemployee(@RequestBody Employee employee)
+	public ResponseEntity<Response> addemployee(@RequestBody Employee employee)
 	{
-		employeeservices.addemployee(employee);
-		return "Employee Added";
+		return employeeservices.addemployee(employee);
+		
 	}
 	
 	@GetMapping("/getAllEmployee")
@@ -51,9 +51,9 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/getEmployeeByEmpId")
-	public Employee getEmployeeByEmpId(@RequestParam String empid)
+	public Employee getEmployeeByEmpId(@RequestParam long empId)
 	{
-		return employeeservices.getEmployeeByEmpId(empid);
+		return employeeservices.getEmployeeByEmpId(empId);
 	}
 	
 	

@@ -1,10 +1,13 @@
 package com.accolite.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -20,10 +23,15 @@ import lombok.Data;
 public class Project {
 
 	@Id
-	private String projectId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long projectId;
+	private String swiftCode;
+	private String division;
+	private String superDepartment;
+	private String department;
 	private String projectName;
-	private String projectDepartment;
 	private String projectLocation;
+	private String typeOfProject;
 	
 //	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "clientId", referencedColumnName = "clientId")
@@ -32,25 +40,42 @@ public class Project {
 	private String clientSideManager;
 	private int isActive;
 	private String modifiedBy;
-	@JsonFormat(pattern = "yyyy-MM-dd")
-	private Date modifiedOn;
-	public String getProjectId() {
+	private LocalDateTime modifiedOn;
+	public long getprojectId() {
 		return projectId;
 	}
-	public void setProjectId(String projectId) {
+	public void setprojectId(long projectId) {
 		this.projectId = projectId;
+	}
+	public String getSwiftCode() {
+		return swiftCode;
+	}
+	public void setSwiftCode(String swiftCode) {
+		this.swiftCode = swiftCode;
+	}
+	public String getDivision() {
+		return division;
+	}
+	public void setDivision(String division) {
+		this.division = division;
+	}
+	public String getSuperDepartment() {
+		return superDepartment;
+	}
+	public void setSuperDepartment(String superDepartment) {
+		this.superDepartment = superDepartment;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 	public String getProjectName() {
 		return projectName;
 	}
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
-	}
-	public String getProjectDepartment() {
-		return projectDepartment;
-	}
-	public void setProjectDepartment(String projectDepartment) {
-		this.projectDepartment = projectDepartment;
 	}
 	public String getProjectLocation() {
 		return projectLocation;
@@ -82,28 +107,45 @@ public class Project {
 	public void setModifiedBy(String modifiedBy) {
 		this.modifiedBy = modifiedBy;
 	}
-	public Date getModifiedOn() {
+	public LocalDateTime getModifiedOn() {
 		return modifiedOn;
 	}
-	public void setModifiedOn(Date modifiedOn) {
+	public void setModifiedOn(LocalDateTime modifiedOn) {
 		this.modifiedOn = modifiedOn;
 	}
-	public Project(String projectId, String projectName, String projectDepartment, String projectLocation,
-			long clientId, String clientSideManager, int isActive, String modifiedBy, Date modifiedOn) {
+	
+	public String getTypeOfProject() {
+		return typeOfProject;
+	}
+	public void setTypeOfProject(String typeOfProject) {
+		this.typeOfProject = typeOfProject;
+	}
+	
+	
+	public Project(long id, String swiftCode, String division, String superDepartment, String department,
+			String projectName, String projectLocation, long clientId, String clientSideManager, int isActive,
+			String modifiedBy, LocalDateTime modifiedOn, String typeOfProject) {
 		super();
 		this.projectId = projectId;
+		this.swiftCode = swiftCode;
+		this.division = division;
+		this.superDepartment = superDepartment;
+		this.department = department;
 		this.projectName = projectName;
-		this.projectDepartment = projectDepartment;
 		this.projectLocation = projectLocation;
 		this.clientId = clientId;
 		this.clientSideManager = clientSideManager;
 		this.isActive = isActive;
 		this.modifiedBy = modifiedBy;
 		this.modifiedOn = modifiedOn;
+		this.typeOfProject = typeOfProject;
 	}
 	public Project() {
 		super();
 	}
+	
+	
+	
 	
 	
 	
