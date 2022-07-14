@@ -49,13 +49,13 @@ public class AllocationController {
 	{
 		return allocationservices.getAllAllocation();
 	}
-//	
+	
 	@GetMapping("/getAllocationByEmpName")
 	public List<Map<String, Object>> getAllocationByEmpName(@RequestParam String name)
 	{
 		return allocationservices.getAllocationByEmpName(name);
 	}
-//	
+	
 	@GetMapping("/getAllocationByEmpEmail")
 	public List<Map<String, Object>> getAllocationByEmpEmail(@RequestParam String email)
 	{

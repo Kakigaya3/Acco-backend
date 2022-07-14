@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.model.Client;
@@ -52,4 +55,19 @@ public class ClientController {
 	public long findNoOfClients() {
 		return clientservices.findNoOfClients();
 	}
+	
+	@PostMapping("/updatestatus/{clientid}")
+	public List<Client> updatestatus(@PathVariable("clientid") Long clientid,@RequestParam String status){
+		int stat;
+		System.out.println(status);
+		if(status.contentEquals("inActive")) {
+			stat=0;
+		}else {
+			stat=1;
+		}
+		
+		System.out.println(stat);
+		return clientservices.updatestatus(clientid,stat);
+	}
+	
 }

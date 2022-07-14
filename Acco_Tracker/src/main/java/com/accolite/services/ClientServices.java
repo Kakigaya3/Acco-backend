@@ -51,4 +51,14 @@ public class ClientServices {
 		return clientRepo.findAll().size()-1;
 	}
 	
+	public List<Client> updatestatus(long clientid,int status) {
+		try {
+		clientRepo.updatestatus(clientid,status);
+		return clientRepo.findAllClients();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }
