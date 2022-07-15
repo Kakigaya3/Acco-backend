@@ -1,4 +1,4 @@
-package com.accolite.model;
+package com.accolite.dto;
 
 public class DtoClass {
 

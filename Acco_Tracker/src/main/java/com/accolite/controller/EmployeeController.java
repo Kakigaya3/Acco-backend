@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accolite.dto.Response;
 import com.accolite.model.Employee;
-import com.accolite.model.Response;
 import com.accolite.services.EmployeeServices;
 
 @RestController

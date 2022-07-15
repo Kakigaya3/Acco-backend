@@ -1,19 +1,12 @@
 package com.accolite.model;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -122,7 +115,7 @@ public class Project {
 	}
 	
 	
-	public Project(long id, String swiftCode, String division, String superDepartment, String department,
+	public Project(long projectId, String swiftCode, String division, String superDepartment, String department,
 			String projectName, String projectLocation, long clientId, String clientSideManager, int isActive,
 			String modifiedBy, LocalDateTime modifiedOn, String typeOfProject) {
 		super();

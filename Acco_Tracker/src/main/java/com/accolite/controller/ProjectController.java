@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accolite.dto.Response;
+import com.accolite.dto.projectDto;
 import com.accolite.model.Allocation;
 import com.accolite.model.Project;
-import com.accolite.model.Response;
 import com.accolite.services.ProjectServices;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,7 +55,7 @@ public class ProjectController {
 	
 	@GetMapping("/getAllProject")
 
-	public List<Project> getAllProject()
+	public List<projectDto> getAllProject()
 	{
 		return projectservices.getAllProject();
 	}

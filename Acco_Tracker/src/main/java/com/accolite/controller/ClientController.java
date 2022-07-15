@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accolite.dto.Response;
 import com.accolite.model.Client;
-import com.accolite.model.Response;
 import com.accolite.services.ClientServices;
 
 

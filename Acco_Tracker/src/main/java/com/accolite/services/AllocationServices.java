@@ -11,10 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.accolite.dto.DtoClass;
+import com.accolite.dto.Response;
 import com.accolite.model.Allocation;
-
-import com.accolite.model.DtoClass;
-import com.accolite.model.Response;
 import com.accolite.repository.AllocationRepository;
 
 @Service
@@ -38,21 +37,21 @@ public class AllocationServices {
 //        allocationRepo.save(allocationdto);
 //	}
 
-	public List<Map<String, Object>> getAllAllocation() {
-        return allocationRepo.getAllAllocation();		
-	}
+//	public List<Map<String, Object>> getAllAllocation() {
+//        return allocationRepo.getAllAllocation();		
+//	}
+//
+//	public List<Map<String, Object>> getAllocationByEmpName(String name) {
+//		return allocationRepo.getAllocationByEmpName(name);
+//	}
+//
+//	public List<Map<String, Object>> getAllocationByEmpEmail(String email) {
+//		return allocationRepo.getAllocationByEmpEmail(email);
+//	}
 
-	public List<Map<String, Object>> getAllocationByEmpName(String name) {
-		return allocationRepo.getAllocationByEmpName(name);
-	}
-
-	public List<Map<String, Object>> getAllocationByEmpEmail(String email) {
-		return allocationRepo.getAllocationByEmpEmail(email);
-	}
-
-	public List<Map<String, Object>> getAllocationByEmpId(String id) {
-		return allocationRepo.getAllocationEmpId(id);
-	}
+//	public List<Map<String, Object>> getAllocationByEmpId(String id) {
+//		return allocationRepo.getAllocationEmpId(id);
+//	}
 
 
 //	public List<Map<String, Object>> getAllocationHistory(String empId) {
@@ -83,7 +82,7 @@ public class AllocationServices {
 	}
 
 	public ResponseEntity<Response> addAllocation(Allocation allocation) {
-		String id=allocation.getEmployeeId();
+		long id=allocation.getEmployeeId();
 		Allocation alloc=allocationRepo.getAllocationByEmpId(id);
 		if(alloc!=null) {
 			alloc.setIsActive(0);

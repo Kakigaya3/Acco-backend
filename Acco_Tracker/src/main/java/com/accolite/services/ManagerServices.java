@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.accolite.dto.Response;
 import com.accolite.model.Manager;
-import com.accolite.model.Response;
 import com.accolite.repository.ManagerRepository;
 
 @Service

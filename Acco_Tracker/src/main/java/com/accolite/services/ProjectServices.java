@@ -8,9 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.accolite.dto.Response;
+import com.accolite.dto.projectDto;
 import com.accolite.model.Client;
 import com.accolite.model.Project;
-import com.accolite.model.Response;
 import com.accolite.repository.ProjectRepository;
 
 @Service
@@ -43,7 +44,7 @@ public class ProjectServices {
 //
 //	}
 
-	public List<Project> getAllProject() {
+	public List<projectDto> getAllProject() {
 
 		return projectRepo.getAllProject();
 	} 

@@ -16,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accolite.dto.DtoClass;
+import com.accolite.dto.Response;
 import com.accolite.model.Allocation;
-
-import com.accolite.model.DtoClass;
-import com.accolite.model.Response;
 import com.accolite.services.AllocationServices;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,31 +48,31 @@ public class AllocationController {
 	}
 
 	
-	@GetMapping("/getAllAllocation")
-	public List<Map<String, Object>> getAllAllocation()
-	{
-		return allocationservices.getAllAllocation();
-	}
-	
-	@GetMapping("/getAllocationByEmpName")
-	public List<Map<String, Object>> getAllocationByEmpName(@RequestParam String name)
-	{
-		return allocationservices.getAllocationByEmpName(name);
-	}
-	
-	@GetMapping("/getAllocationByEmpEmail")
-	public List<Map<String, Object>> getAllocationByEmpEmail(@RequestParam String email)
-	{
-		return allocationservices.getAllocationByEmpEmail(email);
-	}
-
-	
-	@GetMapping("/getAllocationByEmpId")
-	public List<Map<String, Object>> getAllocationByEmpId(@RequestParam String empid)
-	{
-		return allocationservices.getAllocationByEmpId(empid);
-	}
-
+//	@GetMapping("/getAllAllocation")
+//	public List<Map<String, Object>> getAllAllocation()
+//	{
+//		return allocationservices.getAllAllocation();
+//	}
+//	
+//	@GetMapping("/getAllocationByEmpName")
+//	public List<Map<String, Object>> getAllocationByEmpName(@RequestParam String name)
+//	{
+//		return allocationservices.getAllocationByEmpName(name);
+//	}
+//	
+//	@GetMapping("/getAllocationByEmpEmail")
+//	public List<Map<String, Object>> getAllocationByEmpEmail(@RequestParam String email)
+//	{
+//		return allocationservices.getAllocationByEmpEmail(email);
+//	}
+//
+//	
+//	@GetMapping("/getAllocationByEmpId")
+//	public List<Map<String, Object>> getAllocationByEmpId(@RequestParam String empid)
+//	{
+//		return allocationservices.getAllocationByEmpId(empid);
+//	}
+//
 
 //	@GetMapping("/getAllocationHistory")
 //	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
