@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accolite.dto.DtoClass;
+import com.accolite.dto.AllocationDto;
 import com.accolite.dto.Response;
 import com.accolite.model.Allocation;
 import com.accolite.services.AllocationServices;
@@ -41,48 +41,48 @@ public class AllocationController {
 //		return new ResponseEntity<>(new Response("Allocation done for Employee "+ allocation.getEmployeeId()),HttpStatus.OK);
 //	}
 	
-	@PostMapping("/addAllocation")
-	public ResponseEntity<Response> addAllocation(@RequestBody Allocation allocation)
-	{
-		return allocationservices.addAllocation(allocation);
-	}
+//	@PostMapping("/addAllocation")
+//	public ResponseEntity<Response> addAllocation(@RequestBody Allocation allocation)
+//	{
+//		return allocationservices.addAllocation(allocation);
+//	}
 
 	
-//	@GetMapping("/getAllAllocation")
-//	public List<Map<String, Object>> getAllAllocation()
-//	{
-//		return allocationservices.getAllAllocation();
-//	}
+	@GetMapping("/getAllAllocation")
+	public List<Map<String, Object>> getAllAllocation()
+	{
+		return allocationservices.getAllAllocation();
+	}
 //	
-//	@GetMapping("/getAllocationByEmpName")
-//	public List<Map<String, Object>> getAllocationByEmpName(@RequestParam String name)
-//	{
-//		return allocationservices.getAllocationByEmpName(name);
-//	}
+	@GetMapping("/getAllocationByEmpName")
+	public List<Map<String, Object>> getAllocationByEmpName(@RequestParam String name)
+	{
+		return allocationservices.getAllocationByEmpName(name);
+	}
 //	
-//	@GetMapping("/getAllocationByEmpEmail")
-//	public List<Map<String, Object>> getAllocationByEmpEmail(@RequestParam String email)
-//	{
-//		return allocationservices.getAllocationByEmpEmail(email);
-//	}
+	@GetMapping("/getAllocationByEmpEmail")
+	public List<Map<String, Object>> getAllocationByEmpEmail(@RequestParam String email)
+	{
+		return allocationservices.getAllocationByEmpEmail(email);
+	}
 //
 //	
-//	@GetMapping("/getAllocationByEmpId")
-//	public List<Map<String, Object>> getAllocationByEmpId(@RequestParam String empid)
-//	{
-//		return allocationservices.getAllocationByEmpId(empid);
-//	}
+	@GetMapping("/getAllocationByEmpId")
+	public List<Map<String, Object>> getAllocationByEmpId(@RequestParam String empid)
+	{
+		return allocationservices.getAllocationByEmpId(empid);
+	}
 //
 
-//	@GetMapping("/getAllocationHistory")
-//	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
-//	{
-//		return allocationservices.getAllocationHistory(empId);
-//	}
+	@GetMapping("/getAllocationHistory")
+	public List<Map<String, Object>> getAllocationHistory(@RequestParam String empId)
+	{
+		return allocationservices.getAllocationHistory(empId);
+	}
 	
 
 	@GetMapping("/checkExistingWork")
-	public Response checkExistingWork(@RequestParam("empid") String empId)
+	public Response checkExistingWork(@RequestParam("empid") long empId)
 	{
 		return allocationservices.checkExistingWork(empId);
 	}
@@ -93,5 +93,10 @@ public class AllocationController {
 		return allocationservices.checkAllocation(empId);
 	}
 
+	@PostMapping("/addAllocation")
+	public ResponseEntity<Response> addAllocation(@RequestBody Allocation allocation)
+	{
+		return allocationservices.addAllocation(allocation);
+	}
 
 }

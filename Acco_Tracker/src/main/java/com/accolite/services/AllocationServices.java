@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.accolite.dto.DtoClass;
+import com.accolite.dto.AllocationDto;
 import com.accolite.dto.Response;
 import com.accolite.model.Allocation;
 import com.accolite.repository.AllocationRepository;
@@ -37,35 +37,35 @@ public class AllocationServices {
 //        allocationRepo.save(allocationdto);
 //	}
 
-//	public List<Map<String, Object>> getAllAllocation() {
-//        return allocationRepo.getAllAllocation();		
-//	}
+	public List<Map<String, Object>> getAllAllocation() {
+        return allocationRepo.getAllAllocation();		
+	}
 //
-//	public List<Map<String, Object>> getAllocationByEmpName(String name) {
-//		return allocationRepo.getAllocationByEmpName(name);
-//	}
+	public List<Map<String, Object>> getAllocationByEmpName(String name) {
+		return allocationRepo.getAllocationByEmpName(name);
+	}
 //
-//	public List<Map<String, Object>> getAllocationByEmpEmail(String email) {
-//		return allocationRepo.getAllocationByEmpEmail(email);
-//	}
+	public List<Map<String, Object>> getAllocationByEmpEmail(String email) {
+		return allocationRepo.getAllocationByEmpEmail(email);
+	}
 
-//	public List<Map<String, Object>> getAllocationByEmpId(String id) {
-//		return allocationRepo.getAllocationEmpId(id);
-//	}
+	public List<Map<String, Object>> getAllocationByEmpId(String id) {
+		return allocationRepo.getAllocationEmpId(id);
+	}
 
 
-//	public List<Map<String, Object>> getAllocationHistory(String empId) {
-//		return allocationRepo.getAllocationHistory(empId);
-//	}
+	public List<Map<String, Object>> getAllocationHistory(String empId) {
+		return allocationRepo.getAllocationHistory(empId);
+	}
 
-	public Response checkExistingWork(String empId) {
+	public Response checkExistingWork(long empId) {
 		List<Allocation> a=allocationRepo.checkExisitngWork(empId);
 		if(a.size()==0)
 		{
-			System.out.println("No");
+//			System.out.println("No");
 			return new Response("No");
 		}
-		System.out.println("Yes");
+//		System.out.println("Yes");
 		return new Response("Yes");
 	}
 
@@ -83,10 +83,10 @@ public class AllocationServices {
 
 	public ResponseEntity<Response> addAllocation(Allocation allocation) {
 		long id=allocation.getEmployeeId();
-		Allocation alloc=allocationRepo.getAllocationByEmpId(id);
+		Allocation alloc=allocationRepo.getAllocationById(id);
 		if(alloc!=null) {
 			alloc.setIsActive(0);
-			alloc.setEndDate(LocalDateTime.now());
+			alloc.setEndDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
 			allocationRepo.save(alloc);
 		}
         allocationRepo.save(allocation);

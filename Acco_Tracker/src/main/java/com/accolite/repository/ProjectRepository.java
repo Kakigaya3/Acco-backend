@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,10 +17,6 @@ import com.accolite.model.Project;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-	@Transactional
-	@Query(value = "select * from project p where p.project_name like %?1% ", nativeQuery = true)
-	List<Project> getProjectByProjectName(@Param("projectName") String projectName);
-	
 	
 	
 	
@@ -39,17 +36,52 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
 	@Query(value = "select * from project p where p.swift_code = ?1",nativeQuery = true)
 	Project findBySwiftCode(String scode);
+	
+	@Query("select new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
+			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
+			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
+			+ "			from Project p "
+			+ "			  left join Client c "
+			+ "			     on p.clientId = c.clientId "
+			+ "			       left join Allocation a "
+			+ "			          on p.swiftCode = a.swiftCode "
+			+ "                       where p.swiftCode like ?1% "
+			+ "			                  group by p.swiftCode")
+	List<projectDto> getProjectBySwiftCode(String swiftCode);
 
-	@Query(value = "select   c.domain_name, c.client_name, p.swift_code, p.division, \r\n"
-			+ "p.super_department, p.department, p.project_name, p.project_location, \r\n"
-			+ "p.client_side_manager, p.is_active, p.type_of_project, count(a.swift_code) as headCount\r\n"
-			+ "	from project p\r\n"
-			+ "      left join client c\r\n"
-			+ "		 on p.client_id = c.client_id\r\n"
-			+ "			left  join allocation a\r\n"
-			+ "			   on p.swift_code = a.swift_code\r\n"
-			+ "                  where p.swift_code = ?1",nativeQuery = true)
-	Project getProjectBySwiftCode(String swiftCode);
+	
+	@Query("select new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
+			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
+			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
+			+ "			from Project p "
+			+ "			  left join Client c "
+			+ "			     on p.clientId = c.clientId "
+			+ "			       left join Allocation a "
+			+ "			          on p.swiftCode = a.swiftCode "
+			+ "                       where c.clientName like %?1% "
+			+ "			                  group by p.swiftCode")
+	List<projectDto> getProjectByClientName(String clientName);
+	@Query("select new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
+			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
+			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
+			+ "			from Project p "
+			+ "			  left join Client c "
+			+ "			     on p.clientId = c.clientId "
+			+ "			       left join Allocation a "
+			+ "			          on p.swiftCode = a.swiftCode "
+			+ "                       where p.projectName like %?1% "
+			+ "			                  group by p.swiftCode")
+	List<projectDto> getProjectByProjectName(String projectName);
 
+
+
+	
+	@Query(value = "select * from project p where p.client_id = ?1", nativeQuery = true)
+	List<Project> getProjectByClientId(long clientId);
+
+	@Modifying(clearAutomatically = true)
+	@Transactional
+	@Query(value = "UPDATE project SET is_active = ?2 WHERE swift_code = ?1", nativeQuery = true)
+	void updateStatus(String swiftcode, int status);
 //	division, super_department, department, project_name, project_location, client_side_manager, is_active, type_of_project, 
 }

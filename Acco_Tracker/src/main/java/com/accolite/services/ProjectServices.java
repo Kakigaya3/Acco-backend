@@ -34,30 +34,42 @@ public class ProjectServices {
 		}
 	}
 
-//	public Project getProjectByProjectId(String projectId) {
-//		return projectRepo.findById(projectId).get();
-//	}
-//
-//
-//	public List<Project> getProjectByProjectName(String projectName) {
-//		return projectRepo.getProjectByProjectName(projectName.toLowerCase());
-//
-//	}
+
+	
 
 	public List<projectDto> getAllProject() {
 
 		return projectRepo.getAllProject();
 	} 
 	
-//	public List<Project> getProjectByClientId(int clientId) {
-//		return projectRepo.getProjectByClientId(clientId);
-//
-//	}
-
-	public Project getProjectBySwiftCode(String swiftCode) {
+	public List<projectDto> getProjectBySwiftCode(String swiftCode) {
 		return projectRepo.getProjectBySwiftCode(swiftCode);
 	} 
+	public List<projectDto> getProjectByClientName(String clientName) {
+		return projectRepo.getProjectByClientName(clientName);
+	}
+	
+	public List<projectDto> getProjectByProjectName(String projectName) {
+		return projectRepo.getProjectByProjectName(projectName.toLowerCase());
+
+	}
 	public long findNoOfProjects() {
 		return projectRepo.findAll().size()-1;
+	}
+
+	public List<projectDto> updateStatus(String swiftcode, int status) {
+		try {
+			System.out.println("hi");
+			projectRepo.updateStatus(swiftcode,status);
+			return projectRepo.getAllProject();
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
+	public List<Project> getProjectByClientId(long clientId) {
+		return projectRepo.getProjectByClientId(clientId);
 	}
 }

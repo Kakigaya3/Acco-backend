@@ -27,8 +27,8 @@ public class Allocation {
 	private long allocationId;
 	private int isActive = 1;
 	private String swiftCode;
-	private LocalDateTime startDate;
-	private LocalDateTime endDate = null;
+	private Date startDate;
+	private  Date endDate = null;
 	private LocalDateTime modifiedOn;
 	private String modifiedBy;
 	
@@ -64,19 +64,19 @@ public class Allocation {
 		this.swiftCode = swiftCode;
 	}
 
-	public LocalDateTime getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDateTime startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDateTime getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDateTime endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -112,7 +112,7 @@ public class Allocation {
 		this.clientId = clientId;
 	}
 
-	public Allocation(long allocationId, int isActive, String swiftCode, LocalDateTime startDate, LocalDateTime endDate,
+	public Allocation(long allocationId, int isActive, String swiftCode, Date startDate, Date endDate,
 			LocalDateTime modifiedOn, String modifiedBy, long employeeId, long clientId) {
 		super();
 		this.allocationId = allocationId;
