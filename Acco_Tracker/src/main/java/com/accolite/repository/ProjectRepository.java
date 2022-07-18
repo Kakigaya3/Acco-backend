@@ -6,49 +6,83 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.accolite.model.Project;
+import com.accolite.model.ProjectDto;
 
 @Repository
-public interface ProjectRepository extends JpaRepository<Project, String> {
+public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-	@Transactional
-	@Query(value = "select * from project p where p.project_name like %?1% ", nativeQuery = true)
-	List<Project> getProjectByProjectName(@Param("projectName") String projectName);
-	
-	
-	
 	
 	@Transactional
-	@Query(value = "select   c.domain_name, c.client_name, p.swift_code, p.division, \r\n"
-			+ "p.super_department, p.department, p.project_name, p.project_location, \r\n"
-			+ "p.client_side_manager, p.is_active, p.type_of_project, count(a.swift_code) as headCount\r\n"
-			+ "	from project p\r\n"
-			+ "      left join client c\r\n"
-			+ "		 on p.client_id = c.client_id\r\n"
-			+ "			join allocation a\r\n"
-			+ "			   on p.swift_code = a.swift_code\r\n"
-			+ "			       group by a.swift_code",nativeQuery = true)
-	List<Project> getAllProject();
+	@Query("select new com.accolite.model.ProjectDto(c.domainName, c.clientName, p.swiftCode, p.division,\r\n"
+			+ "			p.superDepartment, p.department, p.projectName, p.projectLocation, \r\n"
+			+ "			p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount)\r\n"
+			+ "				from Project p\r\n"
+			+ "			      left join Client c\r\n"
+			+ "					 on p.clientId = c.clientId\r\n"
+			+ "						left join Allocation a\r\n"
+			+ "						   on p.swiftCode = a.swiftCode\r\n"
+			+ "                             group by p.swiftCode")
+	List<ProjectDto> getAllProject();
 	
 
 
 	@Query(value = "select * from project p where p.swift_code = ?1",nativeQuery = true)
 	Project findBySwiftCode(String scode);
 
-	@Query(value = "select   c.domain_name, c.client_name, p.swift_code, p.division, \r\n"
-			+ "p.super_department, p.department, p.project_name, p.project_location, \r\n"
-			+ "p.client_side_manager, p.is_active, p.type_of_project, count(a.swift_code) as headCount\r\n"
-			+ "	from project p\r\n"
-			+ "      left join client c\r\n"
-			+ "		 on p.client_id = c.client_id\r\n"
-			+ "			left  join allocation a\r\n"
-			+ "			   on p.swift_code = a.swift_code\r\n"
-			+ "                  where p.swift_code = ?1",nativeQuery = true)
-	Project getProjectBySwiftCode(String swiftCode);
+	@Query("select new com.accolite.model.ProjectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
+			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
+			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
+			+ "			from Project p "
+			+ "			  left join Client c "
+			+ "			     on p.clientId = c.clientId "
+			+ "			       left join Allocation a "
+			+ "			          on p.swiftCode = a.swiftCode "
+			+ "                       where p.swiftCode = ?1 "
+			+ "			                  group by p.swiftCode")
+	ProjectDto getProjectBySwiftCode(String swiftCode);
 
-//	division, super_department, department, project_name, project_location, client_side_manager, is_active, type_of_project, 
+
+	@Query("select new com.accolite.model.ProjectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
+			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
+			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
+			+ "			from Project p "
+			+ "			  left join Client c "
+			+ "			     on p.clientId = c.clientId "
+			+ "			       left join Allocation a "
+			+ "			          on p.swiftCode = a.swiftCode "
+			+ "                       where p.projectName like %?1% "
+			+ "			                  group by p.swiftCode")
+	List<ProjectDto> getProjectByProjectName(String projectName);
+
+
+	@Query("select new com.accolite.model.ProjectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
+			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
+			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
+			+ "			from Project p "
+			+ "			  left join Client c "
+			+ "			     on p.clientId = c.clientId "
+			+ "			       left join Allocation a "
+			+ "			          on p.swiftCode = a.swiftCode "
+			+ "                       where c.clientName like %?1% "
+			+ "			                  group by p.swiftCode")
+	List<ProjectDto> getProjectByClientName(String clientName);
+
+
+
+//	@Modifying(clearAutomatically = true)
+//	@Transactional
+//	@Query(value = "update project p set is_active = ?2 where p.project_id = ?1", nativeQuery = true)
+//	void updateStatus(Long projectId, Integer isActive);
+
+	
+	@Modifying(clearAutomatically = true)
+	@Transactional
+	@Query(value = "UPDATE project SET is_active = ?2 WHERE project_id = ?1", nativeQuery = true)
+	void updateStatus(Long clientId, int status);
 }

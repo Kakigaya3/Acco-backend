@@ -53,9 +53,9 @@ public class ClientServices {
 		return clientRepo.findAll().size()-1;
 	}
 	
-	public List<Client> updatestatus(long clientid,int status) {
+	public List<Client> updatestatus(long clientId,int status) {
 		try {
-		clientRepo.updatestatus(clientid,status);
+		clientRepo.updatestatus(clientId,status);
 		return clientRepo.findAllClients();
 		}catch(Exception e) {
 			e.printStackTrace();

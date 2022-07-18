@@ -19,14 +19,17 @@ public class EmployeeServices {
 	public EmployeeRepository employeeRepo;
 	
 	public ResponseEntity<Response> addemployee(Employee employee) {
-		try {
 		 long id=employee.getEmployeeId();
-		 Employee e=employeeRepo.findById(id).get();
+		 Employee e=employeeRepo.getEmployeeByEmployeeId(id);
 		 //System.out.println(e);
-	     return new ResponseEntity<>(new Response("Employee already exists"),HttpStatus.BAD_REQUEST);
-		 }catch(Exception e) {
-         employeeRepo.save(employee);
-         return new ResponseEntity<>(new Response("Employee added successfully"),HttpStatus.OK);
+		 if(e!=null)
+		 {
+		       return new ResponseEntity<>(new Response("Employee already exists"),HttpStatus.BAD_REQUEST);
+		 }
+		 else
+		 {
+	         employeeRepo.save(employee);
+	         return new ResponseEntity<>(new Response("Employee added successfully"),HttpStatus.OK);
 		 }
          
 	}
@@ -49,5 +52,17 @@ public class EmployeeServices {
 
 	public long findNoOfEmployees() {
 		return employeeRepo.findAll().size();
+	}
+
+	public List<Employee> updateEmployee(long empId, String status) {
+		try
+		{
+			employeeRepo.updateEmployee(empId, status);
+			return employeeRepo.findAll();
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 	}
 }

@@ -34,7 +34,7 @@ public class Allocation {
 	
 //	@OneToOne
 //	@JoinColumn(name = "employeeId", referencedColumnName = "employeeId")
-	private String employeeId;
+	private long employeeId;
 	
 //	@OneToOne
 //	@JoinColumn(name = "clientId", referencedColumnName = "clientId")
@@ -96,11 +96,11 @@ public class Allocation {
 		this.modifiedBy = modifiedBy;
 	}
 
-	public String getEmployeeId() {
+	public long getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(String employeeId) {
+	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
 	}
 
@@ -113,7 +113,7 @@ public class Allocation {
 	}
 
 	public Allocation(long allocationId, int isActive, String swiftCode, LocalDateTime startDate, LocalDateTime endDate,
-			LocalDateTime modifiedOn, String modifiedBy, String employeeId, long clientId) {
+			LocalDateTime modifiedOn, String modifiedBy, long employeeId, long clientId) {
 		super();
 		this.allocationId = allocationId;
 		this.isActive = isActive;

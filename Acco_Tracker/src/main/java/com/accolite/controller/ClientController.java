@@ -64,8 +64,8 @@ public class ClientController {
 		return clientservices.findNoOfClients();
 	}
 	
-	@PostMapping("/updatestatus/{clientid}")
-	public List<Client> updatestatus(@PathVariable("clientid") Long clientid,@RequestParam String status){
+	@PostMapping("/updatestatus/{clientId}")
+	public List<Client> updatestatus(@PathVariable("clientId") Long clientId,@RequestParam String status){
 		int stat;
 		System.out.println(status);
 		if(status.contentEquals("inActive")) {
@@ -75,7 +75,7 @@ public class ClientController {
 		}
 		
 		System.out.println(stat);
-		return clientservices.updatestatus(clientid,stat);
+		return clientservices.updatestatus(clientId,stat);
 	}
 	
 }

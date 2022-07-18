@@ -41,12 +41,14 @@ public class Project {
 	private int isActive;
 	private String modifiedBy;
 	private LocalDateTime modifiedOn;
+	
 	public long getprojectId() {
 		return projectId;
 	}
 	public void setprojectId(long projectId) {
 		this.projectId = projectId;
 	}
+	
 	public String getSwiftCode() {
 		return swiftCode;
 	}
@@ -122,7 +124,7 @@ public class Project {
 	}
 	
 	
-	public Project(long id, String swiftCode, String division, String superDepartment, String department,
+	public Project(long projectId, String swiftCode, String division, String superDepartment, String department,
 			String projectName, String projectLocation, long clientId, String clientSideManager, int isActive,
 			String modifiedBy, LocalDateTime modifiedOn, String typeOfProject) {
 		super();

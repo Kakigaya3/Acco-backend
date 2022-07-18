@@ -39,10 +39,10 @@ public class ProjectServices {
 //	}
 //
 //
-	public List<ProjectDto> getProjectByProjectName(String projectName) {
-		return projectRepo.getProjectByProjectName(projectName.toLowerCase());
-
-	}
+//	public List<Project> getProjectByProjectName(String projectName) {
+//		return projectRepo.getProjectByProjectName(projectName.toLowerCase());
+//
+//	}
 
 	public List<ProjectDto> getAllProject() {
 
@@ -54,36 +54,10 @@ public class ProjectServices {
 //
 //	}
 
-	public ProjectDto getProjectBySwiftCode(String swiftCode) {
+	public Project getProjectBySwiftCode(String swiftCode) {
 		return projectRepo.getProjectBySwiftCode(swiftCode);
 	} 
 	public long findNoOfProjects() {
 		return projectRepo.findAll().size()-1;
-	}
-
-	public List<ProjectDto> getProjectByClientName(String clientName) {
-		return projectRepo.getProjectByClientName(clientName);
-	}
-
-//	public ResponseEntity<Response> updateStatus(Long projectId, Integer isActive) {
-//		try
-//		{
-//			projectRepo.updateStatus(projectId, isActive);
-//			return new ResponseEntity<>(new Response("Updated Status"),HttpStatus.OK);
-//		}
-//		catch(Exception e)
-//		{
-//			return new ResponseEntity<>(new Response("Cannot Update.. Check the clientid"),HttpStatus.BAD_REQUEST);
-//		}
-//	}
-	
-	public List<ProjectDto> updateStatus(Long projectId, int status) {
-		try {
-			projectRepo.updateStatus(projectId,status);
-			return projectRepo.getAllProject();
-		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 }

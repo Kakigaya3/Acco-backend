@@ -26,7 +26,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 	@Modifying(clearAutomatically = true)
 	@Transactional
 	@Query(value = "UPDATE client SET is_active = ?2 WHERE client_id = ?1", nativeQuery = true)
-	void updatestatus(Long clientid, int status);
+	void updatestatus(Long clientId, int status);
 	
 
 	@Query(value = "select count(*) as total_clients from client",nativeQuery = true)
