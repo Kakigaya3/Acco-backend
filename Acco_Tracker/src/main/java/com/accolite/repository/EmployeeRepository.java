@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.accolite.model.Employee;
-import com.accolite.model.Response;
+import com.accolite.dto.Response;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
@@ -26,8 +26,16 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	@Query("select e from Employee e where e.employeeId = ?1")
 	Employee getEmployeeByEmployeeId(@Param("empId") long empId);
 
+
+	
+
+	
 	@Modifying(clearAutomatically = true)
 	@Transactional
-	@Query(value = "update employee e   set status = ?2 where e.employee_id = ?1",nativeQuery = true)
+	@Query(value = "update employee e   set e.status = ?2 where e.employee_id = ?1",nativeQuery = true)
 	void updateEmployee(long empId, String status);
+
+	
+	@Query(value = "select * from employee e where e.employee_id = ?1", nativeQuery = true)
+	Employee checkEmp(long id);
 }

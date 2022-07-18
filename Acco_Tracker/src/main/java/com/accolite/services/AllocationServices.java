@@ -11,10 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.accolite.dto.AllocationDto;
+import com.accolite.dto.Response;
 import com.accolite.model.Allocation;
-
-import com.accolite.model.DtoClass;
-import com.accolite.model.Response;
 import com.accolite.repository.AllocationRepository;
 
 @Service
@@ -93,4 +92,67 @@ public class AllocationServices {
 //        allocationRepo.save(allocation);
 //		return new ResponseEntity<>(new Response("Allocation done seccessfully"), HttpStatus.OK);
 //	}
+
+	
+//	public void addAllocation(AllocationDto allocationdto)
+//        allocationRepo.save(allocationdto);
+//	}
+
+	public List<Map<String, Object>> getAllAllocation() {
+        return allocationRepo.getAllAllocation();		
+	}
+//
+	public List<Map<String, Object>> getAllocationByEmpName(String name) {
+		return allocationRepo.getAllocationByEmpName(name);
+	}
+//
+	public List<Map<String, Object>> getAllocationByEmpEmail(String email) {
+		return allocationRepo.getAllocationByEmpEmail(email);
+	}
+
+	public List<Map<String, Object>> getAllocationByEmpId(String id) {
+		return allocationRepo.getAllocationEmpId(id);
+	}
+
+
+	public List<Map<String, Object>> getAllocationHistory(String empId) {
+		return allocationRepo.getAllocationHistory(empId);
+	}
+
+	public ResponseEntity<Response> checkExistingWork(long empId) {
+		List<Allocation> a=allocationRepo.checkExisitngWork(empId);
+		if(a.size()==0)
+		{
+//			System.out.println("No");
+			return new ResponseEntity<>(new Response("No"),HttpStatus.OK);
+		}
+//		System.out.println("Yes");
+		return new ResponseEntity<>(new Response("Yes"),HttpStatus.BAD_REQUEST);
+	}
+
+	public ResponseEntity<String> checkAllocation(Long empId) {
+	    List<Long> notalloted = allocationRepo.checkAllocation(empId);
+	    if(notalloted.contains(empId))
+	    {
+	    	System.out.println("if");
+	    	return new ResponseEntity<>(HttpStatus.OK);
+	    }
+	    else
+	    {
+	    	System.out.println("else");
+	    	return new ResponseEntity<>("Enter valid employee id",HttpStatus.BAD_REQUEST);
+	    }
+	}
+
+	public ResponseEntity<Response> addAllocation(Allocation allocation) {
+		long id=allocation.getEmployeeId();
+		Allocation alloc=allocationRepo.getAllocationById(id);
+		if(alloc!=null) {
+			alloc.setIsActive(0);
+			alloc.setEndDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+			allocationRepo.save(alloc);
+		}
+        allocationRepo.save(allocation);
+		return new ResponseEntity<>(new Response("Allocation done seccessfully"), HttpStatus.OK);
+	}
 }

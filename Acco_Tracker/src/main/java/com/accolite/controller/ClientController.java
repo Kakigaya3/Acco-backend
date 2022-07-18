@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accolite.dto.ClientDto;
+import com.accolite.dto.Response;
 import com.accolite.model.Client;
-import com.accolite.model.Response;
 import com.accolite.services.ClientServices;
 
 
@@ -35,19 +36,19 @@ public class ClientController {
 	}
 	
 	@GetMapping("/getAllClient")
-	public List<Client> getAllClient()
+	public List<ClientDto> getAllClient()
 	{
 		return clientservices.getAllClient();
 	}
 	
 	@GetMapping("/getClientByClientName")
-	public List<Client> getClientByClientName(@RequestParam String clientName)
+	public List<ClientDto> getClientByClientName(@RequestParam String clientName)
 	{
 		return clientservices.getClientByClientName(clientName);
 	}
 	
 	@GetMapping("/getClientByDomainName")
-	public List<Client> getClientByDomainName(@RequestParam String domainName)
+	public List<ClientDto> getClientByDomainName(@RequestParam String domainName)
 	{
 		return clientservices.getClientByDomainName(domainName);
 	}
@@ -65,7 +66,7 @@ public class ClientController {
 	}
 	
 	@PostMapping("/updatestatus/{clientId}")
-	public List<Client> updatestatus(@PathVariable("clientId") Long clientId,@RequestParam String status){
+	public List<ClientDto> updatestatus(@PathVariable("clientId") Long clientId,@RequestParam String status){
 		int stat;
 		System.out.println(status);
 		if(status.contentEquals("inActive")) {

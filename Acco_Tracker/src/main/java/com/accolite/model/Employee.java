@@ -1,6 +1,6 @@
 package com.accolite.model;
 
-import java.sql.Date;
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 import lombok.Data;
 
@@ -19,6 +19,21 @@ import lombok.Data;
 @Table(name = "employee")
 public class Employee {
      
+	public Employee(long sno, long employeeId, String employeeName, String employeeEmail, String skills, long years,
+			@Max(12) long months, String status, String modifiedBy, LocalDateTime modifiedOn) {
+		super();
+		this.sno = sno;
+		this.employeeId = employeeId;
+		this.employeeName = employeeName;
+		this.employeeEmail = employeeEmail;
+		this.skills = skills;
+		this.years = years;
+		this.months = months;
+		this.status = status;
+		this.modifiedBy = modifiedBy;
+		this.modifiedOn = modifiedOn;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long sno;
@@ -65,7 +80,7 @@ public class Employee {
 		return skills;
 	}
 
-	public void setSkills(String techStack) {
+	public void setSkills(String skills) {
 		this.skills = skills;
 	}
 
@@ -109,17 +124,13 @@ public class Employee {
 		this.modifiedOn = modifiedOn;
 	}
 
-	public Employee(long employeeId, String employeeName, String employeeEmail, String skills, long years,
-			long months, String status, String modifiedBy, LocalDateTime modifiedOn) {
-		super();
-		this.employeeId = employeeId;
-		this.employeeName = employeeName;
-		this.employeeEmail = employeeEmail;
-		this.skills = skills;
-		this.years = years;
-		this.months = months;
-		this.status = status;
-		this.modifiedBy = modifiedBy;
-		this.modifiedOn = modifiedOn;
-	}	
+	public long getSno() {
+		return sno;
+	}
+
+	public void setSno(long sno) {
+		this.sno = sno;
+	}
+
+	
 }

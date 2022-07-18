@@ -8,10 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.accolite.dto.Response;
+import com.accolite.dto.projectDto;
 import com.accolite.model.Client;
 import com.accolite.model.Project;
 import com.accolite.model.ProjectDto;
-import com.accolite.model.Response;
+
 import com.accolite.repository.ProjectRepository;
 
 @Service
@@ -34,6 +36,7 @@ public class ProjectServices {
 		}
 	}
 
+
 //	public Project getProjectByProjectId(String projectId) {
 //		return projectRepo.findById(projectId).get();
 //	}
@@ -54,12 +57,16 @@ public class ProjectServices {
 //
 //	}
 
-	public ProjectDto getProjectBySwiftCode(String swiftCode) {
+	public List<ProjectDto> getProjectBySwiftCode(String swiftCode) {
 		return projectRepo.getProjectBySwiftCode(swiftCode);
 	} 
+	
+	
+	
 	public long findNoOfProjects() {
 		return projectRepo.findAll().size()-1;
 	}
+
 
 	public List<ProjectDto> getProjectByClientName(String clientName) {
 		return projectRepo.getProjectByClientName(clientName);
@@ -77,13 +84,21 @@ public class ProjectServices {
 //		}
 //	}
 	
-	public List<ProjectDto> updateStatus(Long projectId, int status) {
+	
+	public List<ProjectDto> updateStatus(String swiftcode, int status) {
 		try {
-			projectRepo.updateStatus(projectId,status);
+			System.out.println("hi");
+			projectRepo.updateStatus(swiftcode,status);
 			return projectRepo.getAllProject();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+
+
+	public List<Project> getProjectByClientId(long clientId) {
+		return projectRepo.getProjectByClientId(clientId);
 	}
 }
