@@ -12,7 +12,7 @@ import com.accolite.dto.Response;
 import com.accolite.dto.projectDto;
 import com.accolite.model.Client;
 import com.accolite.model.Project;
-import com.accolite.model.ProjectDto;
+
 
 import com.accolite.repository.ProjectRepository;
 
@@ -42,12 +42,12 @@ public class ProjectServices {
 //	}
 //
 //
-	public List<ProjectDto> getProjectByProjectName(String projectName) {
+	public List<projectDto> getProjectByProjectName(String projectName) {
 		return projectRepo.getProjectByProjectName(projectName.toLowerCase());
 
 	}
 
-	public List<ProjectDto> getAllProject() {
+	public List<projectDto> getAllProject() {
 
 		return projectRepo.getAllProject();
 	} 
@@ -57,7 +57,7 @@ public class ProjectServices {
 //
 //	}
 
-	public List<ProjectDto> getProjectBySwiftCode(String swiftCode) {
+	public List<projectDto> getProjectBySwiftCode(String swiftCode) {
 		return projectRepo.getProjectBySwiftCode(swiftCode);
 	} 
 	
@@ -68,24 +68,14 @@ public class ProjectServices {
 	}
 
 
-	public List<ProjectDto> getProjectByClientName(String clientName) {
+	public List<projectDto> getProjectByClientName(String clientName) {
 		return projectRepo.getProjectByClientName(clientName);
 	}
 
-//	public ResponseEntity<Response> updateStatus(Long projectId, Integer isActive) {
-//		try
-//		{
-//			projectRepo.updateStatus(projectId, isActive);
-//			return new ResponseEntity<>(new Response("Updated Status"),HttpStatus.OK);
-//		}
-//		catch(Exception e)
-//		{
-//			return new ResponseEntity<>(new Response("Cannot Update.. Check the clientid"),HttpStatus.BAD_REQUEST);
-//		}
-//	}
+
 	
 	
-	public List<ProjectDto> updateStatus(String swiftcode, int status) {
+	public List<projectDto> updateStatus(String swiftcode, int status) {
 		try {
 			System.out.println("hi");
 			projectRepo.updateStatus(swiftcode,status);

@@ -22,7 +22,7 @@ import com.accolite.model.Allocation;
 import com.accolite.model.Client;
 import com.accolite.model.Project;
 
-import com.accolite.model.ProjectDto;
+
 import com.accolite.dto.Response;
 
 import com.accolite.services.ProjectServices;
@@ -47,7 +47,7 @@ public class ProjectController {
 	
 	
 	@GetMapping("/getAllProject")
-	public List<ProjectDto> getAllProject()
+	public List<projectDto> getAllProject()
 	{
 		return projectservices.getAllProject();
 	}
@@ -72,18 +72,18 @@ public class ProjectController {
 	
 	
 	@GetMapping("/getProjectBySwiftCode")
-	public List<ProjectDto> getProjectBySwiftCode(@RequestParam String swiftCode)
+	public List<projectDto> getProjectBySwiftCode(@RequestParam String swiftCode)
 	{
 		return projectservices.getProjectBySwiftCode(swiftCode);
 	}
 	
 	@GetMapping("/getProjectByClientName")
-	public List<ProjectDto> getProjectByClientName(@RequestParam String clientName)
+	public List<projectDto> getProjectByClientName(@RequestParam String clientName)
 	{
 			return projectservices.getProjectByClientName(clientName);
 	}
 	@GetMapping("/getProjectByProjectName")
-	public List<ProjectDto> getProjectByProjectName(@RequestParam String projectName)
+	public List<projectDto> getProjectByProjectName(@RequestParam String projectName)
 	{
 		return projectservices.getProjectByProjectName(projectName);
 	}
@@ -94,7 +94,7 @@ public class ProjectController {
 	}
 	
 //	@PutMapping("/updateStatus")
-//	public List<ProjectDto> updateStatus(@RequestParam Long projectId, @RequestParam(required = false) Integer isActive)
+//	public List<projectDto> updateStatus(@RequestParam Long projectId, @RequestParam(required = false) Integer isActive)
 //	{
 //		projectservices.updateStatus(projectId, isActive);
 //		return projectservices.getAllProject();
@@ -109,7 +109,7 @@ public class ProjectController {
 	
 	
 	@PostMapping("/updateStatus/{swiftCode}")
-	public List<ProjectDto> updateStatus(@PathVariable("swiftCode") String swiftcode,@RequestParam String status){
+	public List<projectDto> updateStatus(@PathVariable("swiftCode") String swiftcode,@RequestParam String status){
 		int stat;
 		System.out.println(status);
 		if(status.contentEquals("inActive")) {

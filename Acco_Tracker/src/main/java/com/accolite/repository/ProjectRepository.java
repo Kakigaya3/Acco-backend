@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.accolite.dto.projectDto;
 import com.accolite.model.Project;
-import com.accolite.model.ProjectDto;
+
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
@@ -45,7 +45,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 			+ "			left join Allocation a\r\n"
 			+ "			   on p.swiftCode = a.swiftCode\r\n"
 			+ "			      where p.swiftCode is not null group by p.swiftCode")
-	List<ProjectDto> getAllProject();
+	List<projectDto> getAllProject();
 	
 
 
@@ -60,9 +60,9 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 			+ "			     on p.clientId = c.clientId "
 			+ "			       left join Allocation a "
 			+ "			          on p.swiftCode = a.swiftCode "
-			+ "                       where p.swiftCode like ?1% "
+			+ "                       where p.swiftCode like %?1% "
 			+ "			                  group by p.swiftCode")
-	List<ProjectDto> getProjectBySwiftCode(String swiftCode);
+	List<projectDto> getProjectBySwiftCode(String swiftCode);
 
 	
 //	@Query("select new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
@@ -92,7 +92,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 //	List<ProjectDto> getProjectByProjectName(String projectName);
 
 
-	@Query("select new com.accolite.model.ProjectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
+	@Query("select new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
 			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
 			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
 			+ "			from Project p "
@@ -102,7 +102,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 			+ "			          on p.swiftCode = a.swiftCode "
 			+ "                       where c.clientName like %?1% "
 			+ "			                  group by p.swiftCode")
-	List<ProjectDto> getProjectByClientName(String clientName);
+	List<projectDto> getProjectByClientName(String clientName);
 
 
 
@@ -127,7 +127,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 			+ "			          on p.swiftCode = a.swiftCode "
 			+ "                       where p.projectName like %?1% "
 			+ "			                  group by p.swiftCode")
-	List<ProjectDto> getProjectByProjectName(String projectName);
+	List<projectDto> getProjectByProjectName(String projectName);
 
 
 
