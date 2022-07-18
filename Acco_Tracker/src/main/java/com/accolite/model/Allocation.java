@@ -27,6 +27,7 @@ public class Allocation {
 	private long allocationId;
 	private int isActive = 1;
 	private String swiftCode;
+	private long percentage; 
 	private Date startDate;
 	private  Date endDate = null;
 	private LocalDateTime modifiedOn;
@@ -111,13 +112,26 @@ public class Allocation {
 	public void setClientId(long clientId) {
 		this.clientId = clientId;
 	}
+	
+	
 
-	public Allocation(long allocationId, int isActive, String swiftCode, Date startDate, Date endDate,
-			LocalDateTime modifiedOn, String modifiedBy, long employeeId, long clientId) {
+	public long getPercentage() {
+		return percentage;
+	}
+
+	public void setPercentage(long percentage) {
+		this.percentage = percentage;
+	}
+
+	
+
+	public Allocation(long allocationId, int isActive, String swiftCode, long percentage, Date startDate,
+			Date endDate, LocalDateTime modifiedOn, String modifiedBy, long employeeId, long clientId) {
 		super();
 		this.allocationId = allocationId;
 		this.isActive = isActive;
 		this.swiftCode = swiftCode;
+		this.percentage = percentage;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.modifiedOn = modifiedOn;
