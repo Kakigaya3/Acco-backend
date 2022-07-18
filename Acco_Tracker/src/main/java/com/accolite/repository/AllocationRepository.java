@@ -86,7 +86,7 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 
 	@Transactional
 	@Query(value = "select employee_id from employee ", nativeQuery = true)
-	List<String> checkAllocation(String empId);
+	List<Long> checkAllocation(Long empId);
 	
 
 }

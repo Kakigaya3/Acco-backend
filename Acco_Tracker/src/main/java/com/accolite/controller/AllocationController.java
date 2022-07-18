@@ -82,13 +82,13 @@ public class AllocationController {
 	
 
 	@GetMapping("/checkExistingWork")
-	public Response checkExistingWork(@RequestParam("empid") long empId)
+	public ResponseEntity<Response> checkExistingWork(@RequestParam("empid") long empId)
 	{
 		return allocationservices.checkExistingWork(empId);
 	}
 	
 	@GetMapping("/checkAllocation")
-	public ResponseEntity<String> checkAllocation(@RequestParam("empid") String empId)
+	public ResponseEntity<String> checkAllocation(@RequestParam("empid") Long empId)
 	{
 		return allocationservices.checkAllocation(empId);
 	}

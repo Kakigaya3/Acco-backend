@@ -58,25 +58,27 @@ public class AllocationServices {
 		return allocationRepo.getAllocationHistory(empId);
 	}
 
-	public Response checkExistingWork(long empId) {
+	public ResponseEntity<Response> checkExistingWork(long empId) {
 		List<Allocation> a=allocationRepo.checkExisitngWork(empId);
 		if(a.size()==0)
 		{
 //			System.out.println("No");
-			return new Response("No");
+			return new ResponseEntity<>(new Response("No"),HttpStatus.OK);
 		}
 //		System.out.println("Yes");
-		return new Response("Yes");
+		return new ResponseEntity<>(new Response("Yes"),HttpStatus.BAD_REQUEST);
 	}
 
-	public ResponseEntity<String> checkAllocation(String empId) {
-	    List<String> notalloted = allocationRepo.checkAllocation(empId);
+	public ResponseEntity<String> checkAllocation(Long empId) {
+	    List<Long> notalloted = allocationRepo.checkAllocation(empId);
 	    if(notalloted.contains(empId))
 	    {
+	    	System.out.println("if");
 	    	return new ResponseEntity<>(HttpStatus.OK);
 	    }
 	    else
 	    {
+	    	System.out.println("else");
 	    	return new ResponseEntity<>("Enter valid employee id",HttpStatus.BAD_REQUEST);
 	    }
 	}
