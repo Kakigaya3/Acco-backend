@@ -28,4 +28,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	@Transactional
 	@Query(value = "update employee e   set e.status = ?2 where e.employee_id = ?1",nativeQuery = true)
 	void updateEmployee(long empId, String status);
+
+	
+	@Query(value = "select * from employee e where e.employee_id = ?1", nativeQuery = true)
+	Employee checkEmp(long id);
 }

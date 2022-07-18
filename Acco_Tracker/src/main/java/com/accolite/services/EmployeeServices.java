@@ -64,4 +64,15 @@ public class EmployeeServices {
 			return null;
 		}
 	}
+	public ResponseEntity<Response> checkEmp(long id){
+		
+			Employee emp=employeeRepo.checkEmp(id);
+			if(emp!=null) {
+			return new ResponseEntity<>(new Response("Employee Id Already Exists"),HttpStatus.BAD_REQUEST);
+		}
+			else {
+			return new ResponseEntity<>(new Response("Ok"),HttpStatus.OK);
+			}
+		
+	}
 }

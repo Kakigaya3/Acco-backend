@@ -67,7 +67,10 @@ public class EmployeeController {
 		return employeeservices.updateEmployee(empId,status);
 	}
 
-
+	@GetMapping("checkemp")
+	public ResponseEntity<Response> checkEmp(@RequestParam("empid") long empid){
+		return employeeservices.checkEmp(empid);
+	}
 
 	
 }
