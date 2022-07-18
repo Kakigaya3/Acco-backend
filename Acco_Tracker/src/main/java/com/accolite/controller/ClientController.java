@@ -65,7 +65,7 @@ public class ClientController {
 		return clientservices.findNoOfClients();
 	}
 	
-	@PostMapping("/updatestatus/{clientId}")
+	@PutMapping("/updatestatus/{clientId}")
 	public List<ClientDto> updatestatus(@PathVariable("clientId") Long clientId,@RequestParam String status){
 		int stat;
 		System.out.println(status);
