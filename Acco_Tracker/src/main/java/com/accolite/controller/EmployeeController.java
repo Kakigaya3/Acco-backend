@@ -60,7 +60,13 @@ public class EmployeeController {
 	public long findNoOfEmployees() {
 		return employeeservices.findNoOfEmployees();
 	}
-	
+
+//	@PutMapping("/updateEmployee")
+//	public List<Employee> updateEmployee(@RequestParam long empId, @RequestParam String status)
+//	{
+//		return employeeservices.updateEmployee(empId,status);
+//	}
+
 	@PutMapping("/updateEmployee/{employeeid}")
 	public List<Employee> updateEmployee(@PathVariable("employeeid") long empId, @RequestParam String status)
 	{

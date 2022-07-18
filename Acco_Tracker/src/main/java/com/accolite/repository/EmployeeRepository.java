@@ -8,9 +8,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import com.accolite.model.Employee;
+import com.accolite.dto.Response;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long>{
@@ -23,6 +25,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	
 	@Query("select e from Employee e where e.employeeId = ?1")
 	Employee getEmployeeByEmployeeId(@Param("empId") long empId);
+
+
+	
+
 	
 	@Modifying(clearAutomatically = true)
 	@Transactional

@@ -25,12 +25,15 @@ public class EmployeeServices {
 		 if(e!=null)
 		 {
 		       return new ResponseEntity<>(new Response("Employee already exists"),HttpStatus.BAD_REQUEST);
+
 		 }
 		 else
 		 {
 	         employeeRepo.save(employee);
 	         return new ResponseEntity<>(new Response("Employee added successfully"),HttpStatus.OK);
+
 		 }
+		
         
 	}
 
@@ -53,6 +56,7 @@ public class EmployeeServices {
 	public long findNoOfEmployees() {
 		return employeeRepo.findAll().size();
 	}
+
 	public List<Employee> updateEmployee(long empId, String status) {
 		try
 		{
@@ -64,6 +68,7 @@ public class EmployeeServices {
 			return null;
 		}
 	}
+
 	public ResponseEntity<Response> checkEmp(long id){
 		
 			Employee emp=employeeRepo.checkEmp(id);

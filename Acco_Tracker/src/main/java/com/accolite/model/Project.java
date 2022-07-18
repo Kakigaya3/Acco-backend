@@ -34,12 +34,14 @@ public class Project {
 	private int isActive;
 	private String modifiedBy;
 	private LocalDateTime modifiedOn;
+	
 	public long getprojectId() {
 		return projectId;
 	}
 	public void setprojectId(long projectId) {
 		this.projectId = projectId;
 	}
+	
 	public String getSwiftCode() {
 		return swiftCode;
 	}

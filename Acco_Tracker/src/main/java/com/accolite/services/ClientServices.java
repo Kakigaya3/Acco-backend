@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.accolite.dto.ClientDto;
 import com.accolite.dto.Response;
 import com.accolite.model.Client;
 import com.accolite.model.Employee;
@@ -20,7 +21,7 @@ public class ClientServices {
 	
 	public ResponseEntity<Response> addClient(Client client) {
 		String clientname = client.getClientName();
-		List<Client> c = clientRepo.getClientByClientName(clientname);
+		List<ClientDto> c = clientRepo.getClientByClientName(clientname);
 		 //System.out.println(e);
 		if(c.size()!=0)
 		{
@@ -34,17 +35,17 @@ public class ClientServices {
 	}
 
 	
-	public List<Client> getAllClient() {
+	public List<ClientDto> getAllClient() {
 		return clientRepo.findAllClients();
 	}
 
 	
-	public List<Client> getClientByClientName(String clientName) {
+	public List<ClientDto> getClientByClientName(String clientName) {
 		return clientRepo.getClientByClientName(clientName.toLowerCase());
 	}
 
 
-	public List<Client> getClientByDomainName(String domainName) {
+	public List<ClientDto> getClientByDomainName(String domainName) {
 		return clientRepo.getClientByDomainName(domainName.toLowerCase());
 	}
 
@@ -53,9 +54,9 @@ public class ClientServices {
 		return clientRepo.findAll().size()-1;
 	}
 	
-	public List<Client> updatestatus(long clientid,int status) {
+	public List<ClientDto> updatestatus(long clientId,int status) {
 		try {
-		clientRepo.updatestatus(clientid,status);
+		clientRepo.updatestatus(clientId,status);
 		return clientRepo.findAllClients();
 		}catch(Exception e) {
 			e.printStackTrace();

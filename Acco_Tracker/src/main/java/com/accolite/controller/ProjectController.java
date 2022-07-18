@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.accolite.dto.Response;
 import com.accolite.dto.projectDto;
 import com.accolite.model.Allocation;
+import com.accolite.model.Client;
 import com.accolite.model.Project;
+
+import com.accolite.model.ProjectDto;
+import com.accolite.dto.Response;
+
 import com.accolite.services.ProjectServices;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,29 +45,45 @@ public class ProjectController {
 		return projectservices.addProject(project);
 	}
 	
-
 	
 	@GetMapping("/getAllProject")
-
-	public List<projectDto> getAllProject()
+	public List<ProjectDto> getAllProject()
 	{
 		return projectservices.getAllProject();
 	}
 	
+	
+	
+	
+	
 
+	
+//	
+	
+//	
+	
+//	@GetMapping("/getProjectByClientId")
+//	public List<Project> getProjectByClientId(@RequestParam("clientid") String clientId)
+//	{
+//		
+//		int clientid=Integer.valueOf(clientId);
+//		return projectservices.getProjectByClientId(clientid);
+//	}
+	
+	
 	@GetMapping("/getProjectBySwiftCode")
-	public List<projectDto> getProjectBySwiftCode(@RequestParam String swiftCode)
+	public List<ProjectDto> getProjectBySwiftCode(@RequestParam String swiftCode)
 	{
 		return projectservices.getProjectBySwiftCode(swiftCode);
 	}
 	
 	@GetMapping("/getProjectByClientName")
-	public List<projectDto> getProjectByClientName(@RequestParam String clientName)
+	public List<ProjectDto> getProjectByClientName(@RequestParam String clientName)
 	{
 			return projectservices.getProjectByClientName(clientName);
 	}
 	@GetMapping("/getProjectByProjectName")
-	public List<projectDto> getProjectByProjectName(@RequestParam String projectName)
+	public List<ProjectDto> getProjectByProjectName(@RequestParam String projectName)
 	{
 		return projectservices.getProjectByProjectName(projectName);
 	}
@@ -71,13 +93,23 @@ public class ProjectController {
 		return projectservices.findNoOfProjects();
 	}
 	
+//	@PutMapping("/updateStatus")
+//	public List<ProjectDto> updateStatus(@RequestParam Long projectId, @RequestParam(required = false) Integer isActive)
+//	{
+//		projectservices.updateStatus(projectId, isActive);
+//		return projectservices.getAllProject();
+//	}
+	
+	
 	@GetMapping("/getProjectByClientId")
 	public List<Project> getProjectByClientId(@RequestParam long clientId)
 	{
 		return projectservices.getProjectByClientId(clientId);
 	}
+	
+	
 	@PostMapping("/updateStatus/{swiftCode}")
-	public List<projectDto> updateStatus(@PathVariable("swiftCode") String swiftcode,@RequestParam String status){
+	public List<ProjectDto> updateStatus(@PathVariable("swiftCode") String swiftcode,@RequestParam String status){
 		int stat;
 		System.out.println(status);
 		if(status.contentEquals("inActive")) {
@@ -85,8 +117,6 @@ public class ProjectController {
 		}else {
 			stat=1;
 		}
-		
-//		System.out.println(stat);
 		return projectservices.updateStatus(swiftcode,stat);
 	}
 

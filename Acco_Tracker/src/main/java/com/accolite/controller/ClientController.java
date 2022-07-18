@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.accolite.dto.ClientDto;
 import com.accolite.dto.Response;
 import com.accolite.model.Client;
 import com.accolite.services.ClientServices;
@@ -35,19 +36,19 @@ public class ClientController {
 	}
 	
 	@GetMapping("/getAllClient")
-	public List<Client> getAllClient()
+	public List<ClientDto> getAllClient()
 	{
 		return clientservices.getAllClient();
 	}
 	
 	@GetMapping("/getClientByClientName")
-	public List<Client> getClientByClientName(@RequestParam String clientName)
+	public List<ClientDto> getClientByClientName(@RequestParam String clientName)
 	{
 		return clientservices.getClientByClientName(clientName);
 	}
 	
 	@GetMapping("/getClientByDomainName")
-	public List<Client> getClientByDomainName(@RequestParam String domainName)
+	public List<ClientDto> getClientByDomainName(@RequestParam String domainName)
 	{
 		return clientservices.getClientByDomainName(domainName);
 	}
@@ -64,8 +65,8 @@ public class ClientController {
 		return clientservices.findNoOfClients();
 	}
 	
-	@PostMapping("/updatestatus/{clientid}")
-	public List<Client> updatestatus(@PathVariable("clientid") Long clientid,@RequestParam String status){
+	@PostMapping("/updatestatus/{clientId}")
+	public List<ClientDto> updatestatus(@PathVariable("clientId") Long clientId,@RequestParam String status){
 		int stat;
 		System.out.println(status);
 		if(status.contentEquals("inActive")) {
@@ -75,7 +76,7 @@ public class ClientController {
 		}
 		
 		System.out.println(stat);
-		return clientservices.updatestatus(clientid,stat);
+		return clientservices.updatestatus(clientId,stat);
 	}
 	
 }

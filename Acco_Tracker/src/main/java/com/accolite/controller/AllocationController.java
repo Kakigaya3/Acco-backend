@@ -30,22 +30,7 @@ public class AllocationController {
 
 	@Autowired
 	public AllocationServices allocationservices;
-	
-//	@PostMapping("/addAllocation")
-//	public ResponseEntity<Response> addAllocation(@RequestParam("alloc") String alloc) throws IOException
-//	{   
-//		ObjectMapper obj=new ObjectMapper();
-//		obj.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
-//	    Allocation allocation=obj.readValue(alloc,Allocation.class);
-//		allocationservices.addAllocation(allocation);
-//		return new ResponseEntity<>(new Response("Allocation done for Employee "+ allocation.getEmployeeId()),HttpStatus.OK);
-//	}
-	
-//	@PostMapping("/addAllocation")
-//	public ResponseEntity<Response> addAllocation(@RequestBody Allocation allocation)
-//	{
-//		return allocationservices.addAllocation(allocation);
-//	}
+
 
 	
 	@GetMapping("/getAllAllocation")
