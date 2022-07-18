@@ -14,13 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.accolite.dto.AllocationDto;
 import com.accolite.dto.Response;
 import com.accolite.model.Allocation;
+import com.accolite.model.Employee;
 import com.accolite.repository.AllocationRepository;
+import com.accolite.repository.EmployeeRepository;
 
 @Service
 public class AllocationServices {
 
 	@Autowired
 	public AllocationRepository allocationRepo;
+	
+	@Autowired
+	public EmployeeRepository empRepo;
 
 //	public void addAllocation(Allocation allocation) {
 //		String id=allocation.getEmployeeId();
@@ -85,6 +90,13 @@ public class AllocationServices {
 
 	public ResponseEntity<Response> addAllocation(Allocation allocation) {
 		long id=allocation.getEmployeeId();
+		Employee e=empRepo.getEmployeeByEmployeeId(id);
+		String status=e.getStatus();
+		System.out.println(status);
+		if(status.equals("resign")) {
+			return new ResponseEntity<>(new Response("Employee resigned"), HttpStatus.BAD_REQUEST);
+		}
+		else {
 		Allocation alloc=allocationRepo.getAllocationById(id);
 		if(alloc!=null) {
 			alloc.setIsActive(0);
@@ -92,6 +104,7 @@ public class AllocationServices {
 			allocationRepo.save(alloc);
 		}
         allocationRepo.save(allocation);
-		return new ResponseEntity<>(new Response("Allocation done seccessfully"), HttpStatus.OK);
+		return new ResponseEntity<>(new Response("Allocation done successfully"), HttpStatus.OK);
+		}
 	}
 }

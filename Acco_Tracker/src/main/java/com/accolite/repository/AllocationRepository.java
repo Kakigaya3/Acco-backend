@@ -22,8 +22,8 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 
 	@Modifying(clearAutomatically=true)
 	@Transactional
-	@Query(value="select employee_id,employee_name,employee_email,skills,years,months,domain_name,client_name, \r\n"
-			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active, start_date, end_date  from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,c.domain_name,c.client_name, \r\n"
+	@Query(value="select employee_id,employee_name,employee_email,skills,years,months,status,domain_name,client_name, \r\n"
+			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active, start_date, end_date  from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,e.status,c.domain_name,c.client_name, \r\n"
 			+ "			p.division,p.super_department,p.department,p.project_name,p.type_of_project,p.project_location,a.is_active,a.start_date, a.end_date, row_number() over (partition by e.employee_id order by a.allocation_id desc) as temp \r\n"
 			+ "			from allocation a join employee e on a.employee_id = e.employee_id \r\n"
 			+ "			join client c on a.client_id = c.client_id \r\n"
@@ -32,8 +32,8 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 
 	@Modifying(clearAutomatically=true)
 	@Transactional
-	@Query(value="select employee_id,employee_name,employee_email,skills,years,months,domain_name,client_name, \r\n"
-			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active, start_date, end_date  from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,c.domain_name,c.client_name, \r\n"
+	@Query(value="select employee_id,employee_name,employee_email,skills,years,months,status,domain_name,client_name, \r\n"
+			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active, start_date, end_date  from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,e.status,c.domain_name,c.client_name, \r\n"
 			+ "			p.division,p.super_department,p.department,p.project_name,p.type_of_project,p.project_location,a.is_active, a.start_date, a.end_date , row_number() over (partition by e.employee_id order by a.allocation_id desc) as temp \r\n"
 			+ "			from allocation a join employee e on a.employee_id = e.employee_id  and e.employee_name like %?1% \r\n"
 			+ "			join client c on a.client_id = c.client_id \r\n"
@@ -43,8 +43,8 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 	
 	@Modifying(clearAutomatically=true)
 	@Transactional
-	@Query(value="select employee_id,employee_name,employee_email,skills,years,months,domain_name,client_name, \r\n"
-			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active, start_date, end_date  from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,c.domain_name,c.client_name, \r\n"
+	@Query(value="select employee_id,employee_name,employee_email,skills,years,months,status,domain_name,client_name, \r\n"
+			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active, start_date, end_date  from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,e.status,c.domain_name,c.client_name, \r\n"
 			+ "			p.division,p.super_department,p.department,p.project_name,p.type_of_project,p.project_location,a.is_active, a.start_date, a.end_date, row_number() over (partition by e.employee_id order by a.allocation_id desc) as temp \r\n"
 			+ "			from allocation a join employee e on a.employee_id = e.employee_id and e.employee_email like %?1% \r\n"
 			+ "			join client c on a.client_id = c.client_id \r\n"
@@ -56,8 +56,8 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 	
 	@Modifying(clearAutomatically=true)
 	@Transactional
-	@Query(value ="select employee_id,employee_name,employee_email,skills,years,months,domain_name,client_name, \r\n"
-			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active,  start_date, end_date from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,c.domain_name,c.client_name, \r\n"
+	@Query(value ="select employee_id,employee_name,employee_email,skills,years,months,status,domain_name,client_name, \r\n"
+			+ "			division,super_department,department,project_name,type_of_project,project_location,is_active,  start_date, end_date from (select e.employee_id,e.employee_name,e.employee_email,e.skills,e.years,e.months,e.status,c.domain_name,c.client_name, \r\n"
 			+ "			p.division,p.super_department,p.department,p.project_name,p.type_of_project,p.project_location,a.is_active, a.start_date, a.end_date ,row_number() over (partition by e.employee_id order by a.allocation_id desc) as temp \r\n"
 			+ "			from allocation a join employee e on a.employee_id = e.employee_id and e.employee_id like %?1% \r\n"
 			+ "			join client c on a.client_id = c.client_id \r\n"
