@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.accolite.dto.dtoproject;
 import com.accolite.dto.projectDto;
 import com.accolite.model.Project;
 
@@ -26,33 +27,32 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 	
 	
 	@Transactional
-	@Query("select   new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, \r\n"
-			+ "p.superDepartment, p.department, p.projectName, p.projectLocation, \r\n"
-			+ "p.clientSideManager, p.isActive, p.typeOfProject,count(a.swiftCode) as headCount)\r\n"
-			+ "	from Project p\r\n"
-			+ "      left join Client c\r\n"
-			+ "		 on p.clientId = c.clientId\r\n"
-			+ "			left join Allocation a\r\n"
-			+ "			   on p.swiftCode = a.swiftCode\r\n"
-			+ "			      where p.swiftCode is not null group by p.swiftCode")
-	List<projectDto> getAllProject();
+	@Query(value="select c.domain_name as domainName, c.client_name as clientName, p.swift_code as swiftCode, p.division, \r\n"
+			+ "p.super_department as superDepartment, p.department, p.project_name as projectName, p.project_location as projectLocation, \r\n"
+			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,count(a.swift_code) as headCount\r\n"
+			+ "	from project p\r\n"
+			+ "      left join client c\r\n"
+			+ "		 on p.client_id = c.client_id\r\n"
+			+ "			left join allocation a\r\n"
+			+ "			   on p.swift_code = a.swift_code\r\n"
+			+ "			      where p.swift_code is not null group by p.swift_code;",nativeQuery=true)
+	List<dtoproject> getAllProject();
 	
 
 
 	@Query(value = "select * from project p where p.swift_code = ?1",nativeQuery = true)
 	Project findBySwiftCode(String scode);
 	
-	@Query("select new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
-			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
-			+ "		p.clientSideManager, p.isActive, p.typeOfProject,count(a.swiftCode) as headCount) "
-			+ "			from Project p "
-			+ "			  left join Client c "
-			+ "			     on p.clientId = c.clientId "
-			+ "			       left join Allocation a "
-			+ "			          on p.swiftCode = a.swiftCode "
-			+ "                       where p.swiftCode like %?1% "
-			+ "			                  group by p.swiftCode")
-	List<projectDto> getProjectBySwiftCode(String swiftCode);
+	@Query(value="select c.domain_name as domainName, c.client_name as clientName, p.swift_code as swiftCode, p.division, \r\n"
+			+ "p.super_department as superDepartment, p.department, p.project_name as projectName, p.project_location as projectLocation, \r\n"
+			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,count(a.swift_code) as headCount\r\n"
+			+ "	from project p\r\n"
+			+ "      left join client c\r\n"
+			+ "		 on p.client_id = c.client_id\r\n"
+			+ "			left join allocation a\r\n"
+			+ "			   on p.swift_code = a.swift_code\r\n"
+			+ "			      where p.swift_code is not null and p.swift_code like %?1% group by p.swift_code;",nativeQuery=true)
+	List<dtoproject> getProjectBySwiftCode(String swiftCode);
 
 	
 
@@ -61,17 +61,16 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
 
 
-	@Query("select new com.accolite.dto.projectDto(c.domainName, c.clientName, p.swiftCode, p.division, "
-			+ "	p.superDepartment, p.department, p.projectName, p.projectLocation, "
-			+ "		p.clientSideManager, p.isActive, p.typeOfProject, count(a.swiftCode) as headCount) "
-			+ "			from Project p "
-			+ "			  left join Client c "
-			+ "			     on p.clientId = c.clientId "
-			+ "			       left join Allocation a "
-			+ "			          on p.swiftCode = a.swiftCode "
-			+ "                       where c.clientName like %?1%"
-			+ "			                  group by p.swiftCode")
-	List<projectDto> getProjectByClientName(String clientName);
+	@Query(value="select c.domain_name as domainName, c.client_name as clientName, p.swift_code as swiftCode, p.division, \r\n"
+			+ "p.super_department as superDepartment, p.department, p.project_name as projectName, p.project_location as projectLocation, \r\n"
+			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,count(a.swift_code) as headCount\r\n"
+			+ "	from project p\r\n"
+			+ "      left join client c\r\n"
+			+ "		 on p.client_id = c.client_id\r\n"
+			+ "			left join allocation a\r\n"
+			+ "			   on p.swift_code = a.swift_code\r\n"
+			+ "			      where p.swift_code is not null and c.client_name like %?1% group by p.swift_code;",nativeQuery=true)
+	List<dtoproject> getProjectByClientName(String clientName);
 
 
 

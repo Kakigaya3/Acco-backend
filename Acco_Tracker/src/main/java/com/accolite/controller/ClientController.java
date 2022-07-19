@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.dto.ClientDto;
 import com.accolite.dto.Response;
+import com.accolite.dto.dtoclient;
 import com.accolite.model.Client;
 import com.accolite.services.ClientServices;
 
@@ -36,19 +37,19 @@ public class ClientController {
 	}
 	
 	@GetMapping("/getAllClient")
-	public List<ClientDto> getAllClient()
+	public List<dtoclient> getAllClient()
 	{
 		return clientservices.getAllClient();
 	}
 	
 	@GetMapping("/getClientByClientName")
-	public List<ClientDto> getClientByClientName(@RequestParam String clientName)
+	public List<dtoclient> getClientByClientName(@RequestParam String clientName)
 	{
 		return clientservices.getClientByClientName(clientName);
 	}
 	
 	@GetMapping("/getClientByDomainName")
-	public List<ClientDto> getClientByDomainName(@RequestParam String domainName)
+	public List<dtoclient> getClientByDomainName(@RequestParam String domainName)
 	{
 		return clientservices.getClientByDomainName(domainName);
 	}
@@ -66,7 +67,7 @@ public class ClientController {
 	}
 	
 	@PutMapping("/updatestatus/{clientId}")
-	public List<ClientDto> updatestatus(@PathVariable("clientId") Long clientId,@RequestParam String status){
+	public List<dtoclient> updatestatus(@PathVariable("clientId") Long clientId,@RequestParam String status){
 		int stat;
 		System.out.println(status);
 		if(status.contentEquals("inActive")) {

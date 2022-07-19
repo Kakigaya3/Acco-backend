@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accolite.dto.Response;
+import com.accolite.dto.dtoproject;
 import com.accolite.dto.projectDto;
 import com.accolite.model.Allocation;
 import com.accolite.model.Client;
@@ -47,19 +48,19 @@ public class ProjectController {
 	
 	
 	@GetMapping("/getAllProject")
-	public List<projectDto> getAllProject()
+	public List<dtoproject> getAllProject()
 	{
 		return projectservices.getAllProject();
 	}
 		
 	@GetMapping("/getProjectBySwiftCode")
-	public List<projectDto> getProjectBySwiftCode(@RequestParam String swiftCode)
+	public List<dtoproject> getProjectBySwiftCode(@RequestParam String swiftCode)
 	{
 		return projectservices.getProjectBySwiftCode(swiftCode);
 	}
 	
 	@GetMapping("/getProjectByClientName")
-	public List<projectDto> getProjectByClientName(@RequestParam String clientName)
+	public List<dtoproject> getProjectByClientName(@RequestParam String clientName)
 	{
 			return projectservices.getProjectByClientName(clientName);
 	}
@@ -83,7 +84,7 @@ public class ProjectController {
 	
 	
 	@PostMapping("/updateStatus/{swiftCode}")
-	public List<projectDto> updateStatus(@PathVariable("swiftCode") String swiftcode,@RequestParam String status){
+	public List<dtoproject> updateStatus(@PathVariable("swiftCode") String swiftcode,@RequestParam String status){
 		int stat;
 		System.out.println(status);
 		if(status.contentEquals("inActive")) {

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.accolite.dto.Response;
+import com.accolite.dto.dtoproject;
 import com.accolite.dto.projectDto;
 import com.accolite.model.Client;
 import com.accolite.model.Project;
@@ -47,7 +48,7 @@ public class ProjectServices {
 
 	}
 
-	public List<projectDto> getAllProject() {
+	public List<dtoproject> getAllProject() {
 
 		return projectRepo.getAllProject();
 	} 
@@ -57,7 +58,7 @@ public class ProjectServices {
 //
 //	}
 
-	public List<projectDto> getProjectBySwiftCode(String swiftCode) {
+	public List<dtoproject> getProjectBySwiftCode(String swiftCode) {
 		return projectRepo.getProjectBySwiftCode(swiftCode);
 	} 
 	
@@ -68,14 +69,14 @@ public class ProjectServices {
 	}
 
 
-	public List<projectDto> getProjectByClientName(String clientName) {
+	public List<dtoproject> getProjectByClientName(String clientName) {
 		return projectRepo.getProjectByClientName(clientName);
 	}
 
 
 	
 	
-	public List<projectDto> updateStatus(String swiftcode, int status) {
+	public List<dtoproject> updateStatus(String swiftcode, int status) {
 		try {
 			System.out.println("hi");
 			projectRepo.updateStatus(swiftcode,status);
