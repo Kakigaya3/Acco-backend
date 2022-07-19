@@ -78,5 +78,9 @@ public class ClientController {
 		System.out.println(stat);
 		return clientservices.updatestatus(clientId,stat);
 	}
+	@GetMapping("/getActiveClient")
+	public List<Client> getActiveClient(){
+		return clientservices.getActiveClient(); 
+	}
 	
 }

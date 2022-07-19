@@ -91,4 +91,7 @@ public class ProjectServices {
 	public List<Project> getProjectByClientId(long clientId) {
 		return projectRepo.getProjectByClientId(clientId);
 	}
+	public List<Project> getActiveProject(Long client_id){
+		return projectRepo.getActiveProject(client_id);
+	}
 }

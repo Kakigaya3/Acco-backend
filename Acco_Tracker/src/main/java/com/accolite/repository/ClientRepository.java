@@ -25,7 +25,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 	@Query("select new com.accolite.dto.ClientDto(c.clientId, c.clientName, c.domainName, c.isActive, count(a.clientId) as HeadCount) \r\n"
 			+ "			 from Client c left join Allocation a \r\n"
 			+ "			    on c.clientId = a.clientId \r\n"
-			+ "			        where c.domainName like %?1% \r\n"
+			+ "			        where c.domainName like %?1%\r\n"
 			+ "			           group by c.clientId")
 	List<ClientDto> getClientByDomainName(String domainName);
 	
@@ -44,5 +44,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 
 	@Query(value = "select count(*) as total_clients from client",nativeQuery = true)
 	long getClientCount();
+	@Query(value = "select * from client where is_active=1 and client_id!=-1", nativeQuery = true)
+	List<Client> getActiveClient(); 
 
 }

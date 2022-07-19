@@ -51,26 +51,7 @@ public class ProjectController {
 	{
 		return projectservices.getAllProject();
 	}
-	
-	
-	
-	
-	
-
-	
-//	
-	
-//	
-	
-//	@GetMapping("/getProjectByClientId")
-//	public List<Project> getProjectByClientId(@RequestParam("clientid") String clientId)
-//	{
-//		
-//		int clientid=Integer.valueOf(clientId);
-//		return projectservices.getProjectByClientId(clientid);
-//	}
-	
-	
+		
 	@GetMapping("/getProjectBySwiftCode")
 	public List<projectDto> getProjectBySwiftCode(@RequestParam String swiftCode)
 	{
@@ -92,14 +73,7 @@ public class ProjectController {
 	public long findNoOfProjects() {
 		return projectservices.findNoOfProjects();
 	}
-	
-//	@PutMapping("/updateStatus")
-//	public List<projectDto> updateStatus(@RequestParam Long projectId, @RequestParam(required = false) Integer isActive)
-//	{
-//		projectservices.updateStatus(projectId, isActive);
-//		return projectservices.getAllProject();
-//	}
-	
+
 	
 	@GetMapping("/getProjectByClientId")
 	public List<Project> getProjectByClientId(@RequestParam long clientId)
@@ -119,7 +93,10 @@ public class ProjectController {
 		}
 		return projectservices.updateStatus(swiftcode,stat);
 	}
-
+	@GetMapping("/getActiveProject/{client_id}")
+	public List<Project> getActiveProject(@PathVariable Long client_id){
+		return projectservices.getActiveProject(client_id); 
+	}
 
 
 }

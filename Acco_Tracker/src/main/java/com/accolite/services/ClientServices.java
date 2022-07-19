@@ -63,5 +63,8 @@ public class ClientServices {
 			return null;
 		}
 	}
+	public List<Client> getActiveClient(){
+		return clientRepo.getActiveClient(); 
+	}
 	
 }
