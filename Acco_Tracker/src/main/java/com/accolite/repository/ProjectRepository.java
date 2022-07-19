@@ -29,7 +29,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 	@Transactional
 	@Query(value="select c.domain_name as domainName, c.client_name as clientName, p.swift_code as swiftCode, p.division, \r\n"
 			+ "p.super_department as superDepartment, p.department, p.project_name as projectName, p.project_location as projectLocation, \r\n"
-			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,count(a.swift_code) as headCount\r\n"
+			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,sum(if(a.is_active=1,1,0)) as headCount\r\n"
 			+ "	from project p\r\n"
 			+ "      left join client c\r\n"
 			+ "		 on p.client_id = c.client_id\r\n"
@@ -45,7 +45,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 	
 	@Query(value="select c.domain_name as domainName, c.client_name as clientName, p.swift_code as swiftCode, p.division, \r\n"
 			+ "p.super_department as superDepartment, p.department, p.project_name as projectName, p.project_location as projectLocation, \r\n"
-			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,count(a.swift_code) as headCount\r\n"
+			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,sum(if(a.is_active=1,1,0)) as headCount\r\n"
 			+ "	from project p\r\n"
 			+ "      left join client c\r\n"
 			+ "		 on p.client_id = c.client_id\r\n"
@@ -63,7 +63,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
 	@Query(value="select c.domain_name as domainName, c.client_name as clientName, p.swift_code as swiftCode, p.division, \r\n"
 			+ "p.super_department as superDepartment, p.department, p.project_name as projectName, p.project_location as projectLocation, \r\n"
-			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,count(a.swift_code) as headCount\r\n"
+			+ "p.client_side_manager as clientSideManager, p.is_active as isActive, p.type_of_project as typeOfProject,sum(if(a.is_active=1,1,0)) as headCount\r\n"
 			+ "	from project p\r\n"
 			+ "      left join client c\r\n"
 			+ "		 on p.client_id = c.client_id\r\n"
