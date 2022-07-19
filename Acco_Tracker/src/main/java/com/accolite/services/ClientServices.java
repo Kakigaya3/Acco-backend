@@ -53,7 +53,7 @@ public class ClientServices {
 
 
 	public long findNoOfClients() {
-		return clientRepo.findAll().size()-1;
+		return clientRepo.getClientCount();
 	}
 	
 	public List<dtoclient> updatestatus(long clientId,int status) {

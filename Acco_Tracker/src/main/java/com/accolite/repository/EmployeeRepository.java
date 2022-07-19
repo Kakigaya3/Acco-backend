@@ -29,6 +29,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	
 
+	@Query(value = "select count(*) as total_employee from employee where status!='resign'",nativeQuery = true)
+	long getEmployeeCount();
 	
 	@Modifying(clearAutomatically = true)
 	@Transactional

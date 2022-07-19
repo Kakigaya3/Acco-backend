@@ -44,7 +44,7 @@ public interface ClientRepository extends JpaRepository<Client, Long>{
 	void updatestatus(Long clientId, int status);
 	
 
-	@Query(value = "select count(*) as total_clients from client",nativeQuery = true)
+	@Query(value = "select count(*) as total_clients from client where client_id!=-1 and is_active=1",nativeQuery = true)
 	long getClientCount();
 	@Query(value = "select * from client where is_active=1 and client_id!=-1", nativeQuery = true)
 	List<Client> getActiveClient(); 

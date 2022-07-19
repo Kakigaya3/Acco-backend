@@ -73,12 +73,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 	List<dtoproject> getProjectByClientName(String clientName);
 
 
-
-//	@Modifying(clearAutomatically = true)
-//	@Transactional
-//	@Query(value = "update project p set is_active = ?2 where p.project_id = ?1", nativeQuery = true)
-//	void updateStatus(Long projectId, Integer isActive);
-
 	
 	@Modifying(clearAutomatically = true)
 	@Transactional
@@ -110,4 +104,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
 
 	@Query(value="select * from project where client_id=?1 and is_active = 1 and project_id!=-1", nativeQuery = true)
 	List<Project> getActiveProject(Long client_id);
+	
+	@Query(value = "select count(*) as total_projects from project where project_id!=-1 and is_active=1",nativeQuery = true)
+	long getProjectCount();
 }

@@ -65,7 +65,7 @@ public class ProjectServices {
 	
 	
 	public long findNoOfProjects() {
-		return projectRepo.findAll().size()-1;
+		return projectRepo.getProjectCount();
 	}
 
 

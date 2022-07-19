@@ -54,7 +54,7 @@ public class EmployeeServices {
 	}
 
 	public long findNoOfEmployees() {
-		return employeeRepo.findAll().size();
+		return employeeRepo.getEmployeeCount();
 	}
 
 	public List<Employee> updateEmployee(long empId, String status) {
