@@ -80,4 +80,9 @@ public class EmployeeServices {
 			}
 		
 	}
+	public List<Long> findUnallocEmp() {
+		return employeeRepo.findUnallocEmp(); 
+	}
+
+
 }

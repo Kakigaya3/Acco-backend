@@ -77,6 +77,9 @@ public class EmployeeController {
 	public ResponseEntity<Response> checkEmp(@RequestParam("empid") long empid){
 		return employeeservices.checkEmp(empid);
 	}
-
+	@GetMapping("/findUnallocEmp")
+	public List<Long> findUnallocEmpe() {
+		return employeeservices.findUnallocEmp(); 
+	}
 	
 }

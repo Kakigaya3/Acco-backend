@@ -40,4 +40,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 	
 	@Query(value = "select * from employee e where e.employee_id = ?1", nativeQuery = true)
 	Employee checkEmp(long id);
+	
+	@Query(value = "select employee_id from employee where employee_id not in (select employee_id from allocation)",nativeQuery = true)
+	List<Long> findUnallocEmp();
 }
