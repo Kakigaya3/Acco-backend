@@ -160,7 +160,7 @@ public interface AllocationRepository extends JpaRepository<Allocation, Long> {
 	List<Allocation> checkExisitngWork(long empId);
 
 	@Transactional
-	@Query(value = "select employee_id from employee ", nativeQuery = true)
+	@Query(value = "select employee_id from employee where status!='resign'", nativeQuery = true)
 	List<Long> checkAllocation(Long empId);
 	
 

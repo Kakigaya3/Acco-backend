@@ -145,7 +145,7 @@ public class AllocationServices {
 	    else
 	    {
 	    	System.out.println("else");
-	    	return new ResponseEntity<>("Enter valid employee id",HttpStatus.BAD_REQUEST);
+	    	return new ResponseEntity<>("Employee doesn't exist or resigned",HttpStatus.BAD_REQUEST);
 	    }
 	}
 
